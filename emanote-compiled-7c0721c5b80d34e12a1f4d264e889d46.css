@@ -91,12 +91,23 @@ html {
   font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
   line-height: 1.5;
 }
+h1, p, pre, h2 {
+  margin: 0;
+}
+h1, h2 {
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+}
 h1, p, pre {
   margin: 0;
 }
 h1 {
   font-size: inherit;
   font-weight: inherit;
+  margin: 0;
+}
+h1, p, h2, pre {
   margin: 0;
 }
 h1, p {
@@ -108,17 +119,6 @@ h1, p, h2, h3 {
 h1, h2, h3 {
   font-size: inherit;
   font-weight: inherit;
-}
-h1, h2 {
-  margin: 0;
-  font-size: inherit;
-  font-weight: inherit;
-}
-h1, p, pre, h2 {
-  margin: 0;
-}
-h1, p, h2, pre {
-  margin: 0;
 }
 img {
   border-style: solid;
@@ -250,15 +250,15 @@ ul {
   --tw-bg-opacity: 1;
   background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
 }
+.border-pink-500 {
+  --tw-border-opacity: 1;
+  border-color: rgba(236, 72, 153, var(--tw-border-opacity));
+}
 .border-pink-200 {
   --tw-border-opacity: 1;
   border-color: rgba(251, 207, 232, var(--tw-border-opacity));
 }
 .hover\:border-pink-500:hover {
-  --tw-border-opacity: 1;
-  border-color: rgba(236, 72, 153, var(--tw-border-opacity));
-}
-.border-pink-500 {
   --tw-border-opacity: 1;
   border-color: rgba(236, 72, 153, var(--tw-border-opacity));
 }
@@ -269,14 +269,14 @@ ul {
 .rounded {
   border-radius: 0.25rem;
 }
-.border-l-2 {
-  border-left-width: 2px;
-}
 .border-b-2 {
   border-bottom-width: 2px;
 }
 .border-t-2 {
   border-top-width: 2px;
+}
+.border-l-2 {
+  border-left-width: 2px;
 }
 .border-r-2 {
   border-right-width: 2px;
@@ -399,21 +399,21 @@ ul {
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-}
 .text-4xl {
   font-size: 2.25rem;
   line-height: 2.5rem;
 }
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 .text-6xl {
   font-size: 3.75rem;
   line-height: 1;
+}
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 .leading-relaxed {
   line-height: 1.625;
@@ -435,13 +435,13 @@ ul {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
-.my-4 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
 .my-3 {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
+}
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .mx-2 {
   margin-left: 0.5rem;
@@ -457,6 +457,12 @@ ul {
 .mb-3 {
   margin-bottom: 0.75rem;
 }
+.ml-6 {
+  margin-left: 1.5rem;
+}
+.mt-6 {
+  margin-top: 1.5rem;
+}
 .mt-8 {
   margin-top: 2rem;
 }
@@ -468,12 +474,6 @@ ul {
 }
 .mb-8 {
   margin-bottom: 2rem;
-}
-.ml-6 {
-  margin-left: 1.5rem;
-}
-.mt-6 {
-  margin-top: 1.5rem;
 }
 .ml-2 {
   margin-left: 0.5rem;
@@ -542,6 +542,12 @@ ul {
 .pl-2 {
   padding-left: 0.5rem;
 }
+.pb-1 {
+  padding-bottom: 0.25rem;
+}
+.pl-1 {
+  padding-left: 0.25rem;
+}
 .pb-2 {
   padding-bottom: 0.5rem;
 }
@@ -550,12 +556,6 @@ ul {
 }
 .pl-4 {
   padding-left: 1rem;
-}
-.pb-1 {
-  padding-bottom: 0.25rem;
-}
-.pl-1 {
-  padding-left: 0.25rem;
 }
 .text-center {
   text-align: center;
