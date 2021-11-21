@@ -25,7 +25,7 @@
 
   
   <!-- CSSSTART -->
-	<link rel="stylesheet" href="emanote-compiled-7c0721c5b80d34e12a1f4d264e889d46.css" />
+	<link rel="stylesheet" href="emanote-compiled-ebbdf374c9c3c2e238e7f70a91b7fbe1.css" />
   <!-- CSSEND -->
 
   <!-- Heist error element -->
@@ -879,11 +879,14 @@
     <ul class='my-3 ml-6 space-y-1 list-decimal list-inside'>
       
         <li>
-          <a href='https://nixos.org/download.html' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>Install Nix</a> (see <a href='https://neuron.zettel.page/install' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>platform-specific notes here</a>)
-        </li>
-      
-        <li>
-          <a href='https://nixos.wiki/wiki/Flakes#Installing_flakes' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>Enable Flakes</a>
+          <a href='https://nixos.org/download.html' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>Install Nix</a>
+    <!-- DoNotFormat -->
+    <!-- We use JavaScript because anchor links won't work if there is a <base> tag;
+         see https://stackoverflow.com/a/34765348 
+    -->
+    <sup class='px-0.5'><a class='text-pink-600 hover:underline' href='javascript:;' onclick="document.location.hash='#fn1';">1</a></sup>
+    <!-- DoNotFormat -->
+   and <a href='https://nixos.wiki/wiki/Flakes#Installing_flakes' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>Enable Flakes</a>
         </li>
       
         <li>
@@ -897,6 +900,10 @@
     </ul>
   
     <p class='mb-3'>
+      (If you are using <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>cabal</code>, rather than Nix - run <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>ghcid</code> in place of <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>bin/run</code>).
+    </p>
+  
+    <p class='mb-3'>
       That should start the Ema dev server displaying a simple website. Go ahead and try modifying either the Markdown content in <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>./content</code> or the Haskell source in <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>./src/Main.hs</code>, and observe how the web view updates <a href='concepts/hot-reload' class='text-pink-600 font-bold hover:underline'>instantly</a>.
     </p>
   <div class='mt-8 border-t-2 border-pink-500 pb-1 pl-1 bg-gray-50 rounded'>
@@ -904,6 +911,20 @@
       <span class='py-2 text-xl italic font-bold'>Next</span>, <a href='start/tutorial' class='text-pink-600 font-bold hover:underline'>in the tutorial</a> let’s try using this template repo to create a basic website.
     </p>
   </div>
+    <div title='Footnotes' class='pt-2 mt-8 space-y-1 text-gray-500 transform scale-x-90 border-t-2'>
+      <header class='font-semibold'>Footnotes</header>
+      
+        <div id='fn1'>
+          <header class='italic'>
+            1.
+          </header>
+          <div class='inline-block mb-2 ml-4'>
+            Nix is optional. The <a href='https://github.com/srid/ema-template' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>template repository</a> will work with plain <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>cabal</code>.
+          </div>
+        </div>
+      
+    </div>
+  
   <!-- What goes in this file will appear below the note body-->
 </article>
             <div class='flex flex-col lg:flex-row lg:space-x-2'>
