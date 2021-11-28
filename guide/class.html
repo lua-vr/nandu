@@ -25,7 +25,7 @@
 
   
   <!-- CSSSTART -->
-	<link rel="stylesheet" href="emanote-compiled-ebbdf374c9c3c2e238e7f70a91b7fbe1.css" />
+	<link rel="stylesheet" href="emanote-compiled-3b6062fbddcf5b6c5c9030e9909ba7c0.css" />
   <!-- CSSEND -->
 
   <!-- Heist error element -->
@@ -36,24 +36,21 @@
       font-family: monospace;
     }
   </style>
-  <!-- What goes in this file will appear on near the end of <head>--><link rel='preload' href='_emanote-static/fonts/Nunito/Nunito-Regular.ttf' as='font' type='font/ttf' crossorigin />
-<link rel='preload' href='_emanote-static/fonts/Nunito/Nunito-ExtraBold.ttf' as='font' type='font/ttf' crossorigin />
+  <!-- What goes in this file will appear on near the end of <head>--><link rel='preload' href='_emanote-static/fonts/Maven_Pro/MavenPro-VariableFont_wght.ttf' as='font' type='font/ttf' crossorigin />
 
 <style>
   @font-face {
-    font-family: 'Nunito';
-    src: url('_emanote-static/fonts/Nunito/Nunito-Regular.ttf') format("truetype");
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Nunito-Bold';
-    src: url('_emanote-static/fonts/Nunito/Nunito-ExtraBold.ttf') format("truetype");
+    font-family: 'MavenPro';
+    src: url('_emanote-static/fonts/Maven_Pro/MavenPro-VariableFont_wght.ttf') format("truetype");
     font-display: swap;
   }
 
   body {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'MavenPro', sans-serif;
+  }
+
+  a.mavenLinkBold {
+    font-variation-settings: 'wght'500;
   }
 
   h1,
@@ -64,7 +61,7 @@
   h6,
   header,
   .header-font {
-    font-family: 'Nunito-Bold', sans-serif;
+    font-family: 'MavenPro', sans-serif;
   }
 </style>
 
@@ -882,11 +879,11 @@
   <!-- What goes in this file will appear on top of note body-->
   
     <p class='mb-3'>
-      Once you have <a href='guide/model' class='text-pink-600 font-bold hover:underline'>model</a> and <a href='guide/routes' class='text-pink-600 font-bold hover:underline'>route</a> types in place, we must tell the Haskell compiler that they are suitable for generating static sites. We do this by creating an instance of the <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>Ema</code> typeclass.
+      Once you have <a href='guide/model' class='text-pink-600 mavenLinkBold hover:underline'>model</a> and <a href='guide/routes' class='text-pink-600 mavenLinkBold hover:underline'>route</a> types in place, we must tell the Haskell compiler that they are suitable for generating static sites. We do this by creating an instance of the <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>Ema</code> typeclass.
     </p>
   
     <p class='mb-3'>
-      Using some <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>MyModel</code> and the route <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>Route</code> shown in the <a href='guide/routes' class='text-pink-600 font-bold hover:underline'>previous</a> section, we can create an instance as follows:
+      Using some <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>MyModel</code> and the route <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>Route</code> shown in the <a href='guide/routes' class='text-pink-600 mavenLinkBold hover:underline'>previous</a> section, we can create an instance as follows:
     </p>
   <div class='py-0.5 mb-3 text-sm'><pre><code class='haskell language-haskell'>class Ema MyModel Route where 
   -- Where to generate this route?
@@ -931,11 +928,11 @@
     <ul class='my-3 ml-6 space-y-1 list-decimal list-inside'>
       
         <li>
-          <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>render</code> function that renders your route (usually to HTML); we’ll go over this in <a href='guide/render' class='text-pink-600 font-bold hover:underline'>the next</a> section.
+          <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>render</code> function that renders your route (usually to HTML); we’ll go over this in <a href='guide/render' class='text-pink-600 mavenLinkBold hover:underline'>the next</a> section.
         </li>
       
         <li>
-          an IO action that takes <a href='guide/model' class='text-pink-600 font-bold hover:underline'><code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>LVar model</code></a> as an argument.
+          an IO action that takes <a href='guide/model' class='text-pink-600 mavenLinkBold hover:underline'><code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>LVar model</code></a> as an argument.
         </li>
       
     </ul>
@@ -945,7 +942,7 @@
     </p>
   <div class='mt-8 border-t-2 border-pink-500 pb-1 pl-1 bg-gray-50 rounded'>
     <p class='mb-3'>
-      <span class='py-2 text-xl italic font-bold'>Next</span>, with our model and routes in place constrained by <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>Ema</code> type class, <a href='guide/render' class='text-pink-600 font-bold hover:underline'>we will define the HTML for our site</a> using Ema.
+      <span class='py-2 text-xl italic font-bold'>Next</span>, with our model and routes in place constrained by <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>Ema</code> type class, <a href='guide/render' class='text-pink-600 mavenLinkBold hover:underline'>we will define the HTML for our site</a> using Ema.
     </p>
   </div>
   <!-- What goes in this file will appear below the note body-->
@@ -958,7 +955,7 @@
     <ul class='space-y-1'>
       
         <li>
-          <a class='text-pink-600 font-bold hover:bg-pink-50' href='guide/routes'>
+          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='guide/routes'>
             Working with routes
           </a>
           
@@ -973,7 +970,7 @@
         </li>
       
         <li>
-          <a class='text-pink-600 font-bold hover:bg-pink-50' href='start/tutorial'>
+          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='start/tutorial'>
             Tutorial
           </a>
           
@@ -996,7 +993,7 @@
         </li>
       
         <li>
-          <a class='text-pink-600 font-bold hover:bg-pink-50' href='guide/render'>
+          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='guide/render'>
             Rendering HTML
           </a>
           
@@ -1011,7 +1008,7 @@
         </li>
       
         <li>
-          <a class='text-pink-600 font-bold hover:bg-pink-50' href='guide'>
+          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='guide'>
             Guide
           </a>
           
@@ -1026,7 +1023,7 @@
         </li>
       
         <li>
-          <a class='text-pink-600 font-bold hover:bg-pink-50' href='guide/model'>
+          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='guide/model'>
             Defining your model
           </a>
           
@@ -1057,27 +1054,27 @@
   
   <div>
     <a href='' title='Go to Home page'>
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-5 h-5 hover:text-pink-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-pink-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'></path>
       </svg>
     </a>
   </div>
   <div>
     <a href='-/all' title='View Index'>
-      <svg class='w-5 h-5 hover:text-pink-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-6 h-6 hover:text-pink-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4'>
         </path>
       </svg>
     </a>
   </div>
   <div>
-    <a href='https://note.ema.srid.ca' target='_blank' title='Generated by Emanote 0.3.13.1'>
-      <img class='w-5 h-5 hover:text-pink-700' src='_emanote-static/emanote-logo.svg' />
+    <a href='https://note.ema.srid.ca' target='_blank' title='Generated by Emanote 0.3.15.2'>
+      <img class='w-6 h-6 hover:text-pink-700' src='_emanote-static/emanote-logo.svg' />
     </a>
   </div>
   <div>
     <a href='-/tags' title='View tags'>
-      <svg class='w-5 h-5 hover:text-pink-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-6 h-6 hover:text-pink-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z'>
         </path>
       </svg>
@@ -1085,7 +1082,7 @@
   </div>
   <div>
     <a href='-/tasks' title='View tasks'>
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-5 h-5 hover:text-pink-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-pink-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'></path>
       </svg>
     </a>

@@ -25,7 +25,7 @@
 
   
   <!-- CSSSTART -->
-	<link rel="stylesheet" href="emanote-compiled-ebbdf374c9c3c2e238e7f70a91b7fbe1.css" />
+	<link rel="stylesheet" href="emanote-compiled-3b6062fbddcf5b6c5c9030e9909ba7c0.css" />
   <!-- CSSEND -->
 
   <!-- Heist error element -->
@@ -36,24 +36,21 @@
       font-family: monospace;
     }
   </style>
-  <!-- What goes in this file will appear on near the end of <head>--><link rel='preload' href='_emanote-static/fonts/Nunito/Nunito-Regular.ttf' as='font' type='font/ttf' crossorigin />
-<link rel='preload' href='_emanote-static/fonts/Nunito/Nunito-ExtraBold.ttf' as='font' type='font/ttf' crossorigin />
+  <!-- What goes in this file will appear on near the end of <head>--><link rel='preload' href='_emanote-static/fonts/Maven_Pro/MavenPro-VariableFont_wght.ttf' as='font' type='font/ttf' crossorigin />
 
 <style>
   @font-face {
-    font-family: 'Nunito';
-    src: url('_emanote-static/fonts/Nunito/Nunito-Regular.ttf') format("truetype");
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Nunito-Bold';
-    src: url('_emanote-static/fonts/Nunito/Nunito-ExtraBold.ttf') format("truetype");
+    font-family: 'MavenPro';
+    src: url('_emanote-static/fonts/Maven_Pro/MavenPro-VariableFont_wght.ttf') format("truetype");
     font-display: swap;
   }
 
   body {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'MavenPro', sans-serif;
+  }
+
+  a.mavenLinkBold {
+    font-variation-settings: 'wght'500;
   }
 
   h1,
@@ -64,7 +61,7 @@
   h6,
   header,
   .header-font {
-    font-family: 'Nunito-Bold', sans-serif;
+    font-family: 'MavenPro', sans-serif;
   }
 </style>
 
@@ -882,17 +879,17 @@
   <!-- What goes in this file will appear on top of note body-->
   
     <p class='mb-3'>
-      Once you have <a href='guide/model' class='text-pink-600 font-bold hover:underline'>model</a> and <a href='guide/routes' class='text-pink-600 font-bold hover:underline'>routes</a> in place and <a href='guide/class' class='text-pink-600 font-bold hover:underline'>constrained</a>, the last piece of the puzzle is to write a function that takes both as arguments and returns file content (lazy bytestring, to be exact) to generate. This function can be as simple as the following:
+      Once you have <a href='guide/model' class='text-pink-600 mavenLinkBold hover:underline'>model</a> and <a href='guide/routes' class='text-pink-600 mavenLinkBold hover:underline'>routes</a> in place and <a href='guide/class' class='text-pink-600 mavenLinkBold hover:underline'>constrained</a>, the last piece of the puzzle is to write a function that takes both as arguments and returns file content (lazy bytestring, to be exact) to generate. This function can be as simple as the following:
     </p>
   <div class='py-0.5 mb-3 text-sm'><pre><code class='haskell language-haskell'>render :: MyModel -&gt; Route -&gt; Asset ByteString
 render model route =
   AssetGenerated Html "&lt;b&gt;Hello&lt;/b&gt;, world!"</code></pre></div>
     <p class='mb-3'>
-      The <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>AssetGenerated Html</code> tells Ema that you are generating HTML content, which will be appropriately handled by the <a href='concepts/hot-reload' class='text-pink-600 font-bold hover:underline' data-wikilink-type='WikiLinkNormal'>Hot Reload</a> of the live server.
+      The <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>AssetGenerated Html</code> tells Ema that you are generating HTML content, which will be appropriately handled by the <a href='concepts/hot-reload' class='text-pink-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Hot Reload</a> of the live server.
     </p>
   
     <p class='mb-3'>
-      Of course we want it to be real, by using our model value, as well as generate the HTML based on the route. We will also use the <a href='https://hackage.haskell.org/package/blaze-html' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>blaze-html</a> library to make writing HTML in Haskell palatable (see also <a href='guide/helpers/tailwind' class='text-pink-600 font-bold hover:underline'>the layout helper</a>). A more realistic starting point (if not the finishing product) would be:
+      Of course we want it to be real, by using our model value, as well as generate the HTML based on the route. We will also use the <a href='https://hackage.haskell.org/package/blaze-html' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>blaze-html</a> library to make writing HTML in Haskell palatable (see also <a href='guide/helpers/tailwind' class='text-pink-600 mavenLinkBold hover:underline'>the layout helper</a>). A more realistic starting point (if not the finishing product) would be:
     </p>
   <div class='py-0.5 mb-3 text-sm'><pre><code class='haskell language-haskell'>render :: MyModel -&gt; Route -&gt; Asset ByteString 
 render model route = AssetGenerated Html . Blaze.renderHtml $ 
@@ -918,15 +915,15 @@ render model route = AssetGenerated Html . Blaze.renderHtml $
     </p>
   
     <p class='mb-3'>
-      Spend a few moments trying to appreciate how this is <em>much simpler</em> to write than dealing with HTML template files spread across the disk as is the case with traditional static site generators. If you <a href='https://vrom911.github.io/blog/html-libraries' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>choose</a> to go the DSL route, Haskell’s type-safety now applies to your HTML as well. On top of it, Ema’s <a href='concepts/hot-reload' class='text-pink-600 font-bold hover:underline'>hot reload</a> will instantly update the dev server’s browser view whenever you change your HTML (or any of the Haskell source code).
+      Spend a few moments trying to appreciate how this is <em>much simpler</em> to write than dealing with HTML template files spread across the disk as is the case with traditional static site generators. If you <a href='https://vrom911.github.io/blog/html-libraries' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>choose</a> to go the DSL route, Haskell’s type-safety now applies to your HTML as well. On top of it, Ema’s <a href='concepts/hot-reload' class='text-pink-600 mavenLinkBold hover:underline'>hot reload</a> will instantly update the dev server’s browser view whenever you change your HTML (or any of the Haskell source code).
     </p>
   
     <p class='mb-3'>
-      Of course when using Ema nothing prevents you from choosing to use traditional HTML templates, and you can get <a href='concepts/hot-reload' class='text-pink-600 font-bold hover:underline'>hot reload</a> on them too with <a href='guide/helpers/filesystem' class='text-pink-600 font-bold hover:underline'>a little bit of plumbing</a>.
+      Of course when using Ema nothing prevents you from choosing to use traditional HTML templates, and you can get <a href='concepts/hot-reload' class='text-pink-600 mavenLinkBold hover:underline'>hot reload</a> on them too with <a href='guide/helpers/filesystem' class='text-pink-600 mavenLinkBold hover:underline'>a little bit of plumbing</a>.
     </p>
   <div class='mt-8 border-t-2 border-pink-500 pb-1 pl-1 bg-gray-50 rounded'>
     <p class='mb-3'>
-      <span class='py-2 text-xl italic font-bold'>Next</span>, you might want to peruse <a href='guide/helpers' class='text-pink-600 font-bold hover:underline'>the helper topics</a> if you need some extra functionality provided.
+      <span class='py-2 text-xl italic font-bold'>Next</span>, you might want to peruse <a href='guide/helpers' class='text-pink-600 mavenLinkBold hover:underline'>the helper topics</a> if you need some extra functionality provided.
     </p>
   </div>
   <!-- What goes in this file will appear below the note body-->
@@ -939,7 +936,7 @@ render model route = AssetGenerated Html . Blaze.renderHtml $
     <ul class='space-y-1'>
       
         <li>
-          <a class='text-pink-600 font-bold hover:bg-pink-50' href='guide/helpers/tailwind'>
+          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='guide/helpers/tailwind'>
             Using Tailwind CSS
           </a>
           
@@ -954,7 +951,7 @@ render model route = AssetGenerated Html . Blaze.renderHtml $
         </li>
       
         <li>
-          <a class='text-pink-600 font-bold hover:bg-pink-50' href='guide'>
+          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='guide'>
             Guide
           </a>
           
@@ -969,7 +966,7 @@ render model route = AssetGenerated Html . Blaze.renderHtml $
         </li>
       
         <li>
-          <a class='text-pink-600 font-bold hover:bg-pink-50' href='guide/model'>
+          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='guide/model'>
             Defining your model
           </a>
           
@@ -984,7 +981,7 @@ render model route = AssetGenerated Html . Blaze.renderHtml $
         </li>
       
         <li>
-          <a class='text-pink-600 font-bold hover:bg-pink-50' href='guide/class'>
+          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='guide/class'>
             Defining Ema instance
           </a>
           
@@ -1019,27 +1016,27 @@ render model route = AssetGenerated Html . Blaze.renderHtml $
   
   <div>
     <a href='' title='Go to Home page'>
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-5 h-5 hover:text-pink-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-pink-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'></path>
       </svg>
     </a>
   </div>
   <div>
     <a href='-/all' title='View Index'>
-      <svg class='w-5 h-5 hover:text-pink-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-6 h-6 hover:text-pink-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4'>
         </path>
       </svg>
     </a>
   </div>
   <div>
-    <a href='https://note.ema.srid.ca' target='_blank' title='Generated by Emanote 0.3.13.1'>
-      <img class='w-5 h-5 hover:text-pink-700' src='_emanote-static/emanote-logo.svg' />
+    <a href='https://note.ema.srid.ca' target='_blank' title='Generated by Emanote 0.3.15.2'>
+      <img class='w-6 h-6 hover:text-pink-700' src='_emanote-static/emanote-logo.svg' />
     </a>
   </div>
   <div>
     <a href='-/tags' title='View tags'>
-      <svg class='w-5 h-5 hover:text-pink-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-6 h-6 hover:text-pink-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z'>
         </path>
       </svg>
@@ -1047,7 +1044,7 @@ render model route = AssetGenerated Html . Blaze.renderHtml $
   </div>
   <div>
     <a href='-/tasks' title='View tasks'>
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-5 h-5 hover:text-pink-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-pink-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'></path>
       </svg>
     </a>
