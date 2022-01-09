@@ -4,14 +4,14 @@
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <title>
-    Using Tailwind CSS – Ema
+    Using Blaze HTML & Tailwind – Ema
   </title>
   
     
       <meta property='og:description' content />
       <meta property='og:site_name' content='Ema' />
       <meta property='og:type' content='website' />
-      <meta property='og:title' content='Using Tailwind CSS' />
+      <meta property='og:title' content='Using Blaze HTML & Tailwind' />
     
     
       <base href='/' />
@@ -498,8 +498,8 @@
       </svg>
       
   
-    <a class='font-bold text-pink-600 hover:underline truncate' title='Using Tailwind CSS' href='guide/helpers/tailwind'>
-      Using Tailwind CSS
+    <a class='font-bold text-pink-600 hover:underline truncate' title='Using Blaze HTML & Tailwind' href='guide/helpers/blaze'>
+      Using Blaze HTML & Tailwind
     </a>
     
       
@@ -879,14 +879,14 @@
           <main class='px-4 py-4'>
             <h1 class='flex items-end justify-center mb-4 p-3 bg-pink-100 text-5xl font-extrabold text-black rounded'>
   <a class='z-40 tracking-tighter '>
-    Using Tailwind CSS
+    Using Blaze HTML & Tailwind
   </a>
 </h1>
             <article class='overflow-auto'>
   <!-- What goes in this file will appear on top of note body-->
-  
+  <h2 id='tailwind-20' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Tailwind 2.0</h2>
     <p class='mb-3'>
-      The <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>Ema.Helper.Tailwind</code> module provides a <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>layout</code> function that uses <a href='https://twind.dev/' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>twind</a> shim that is used in the statically generated site, and otherwise uses Tailwind CSS from CDN in the dev server mode. This helper is for those that <strong>use <a href='https://tailwindcss.com/' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>Tailwind CSS</a> in conjunction with <a href='https://hackage.haskell.org/package/blaze-html' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>blaze-html</a> DSL</strong>.
+      The <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>Ema.Helper.Blaze</code> module provides a <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>twindLayout</code> function that uses <a href='https://twind.dev/' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>twind</a> shim that is used in the statically generated site, and otherwise uses Tailwind CSS from CDN in the dev server mode. This helper is for those that <strong>use <a href='https://tailwindcss.com/' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>Tailwind CSS</a> in conjunction with <a href='https://hackage.haskell.org/package/blaze-html' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>blaze-html</a> DSL</strong>.
     </p>
   
     <p class='mb-3'>
@@ -895,14 +895,18 @@
   <div class='py-0.5 mb-3 text-sm'><pre><code class='haskell language-haskell'>render :: Some Ema.CLI.Action -&gt; MyModel -&gt; MyRoute -&gt; Asset LByteString
 render emaAction model route = do
   AssetGenerated Html $ 
-    Tailwind.layout emaAction (H.title "My site" &gt;&gt; H.base ! A.href "/") $ do 
+    Blaze.twindLayout emaAction (H.title "My site" &gt;&gt; H.base ! A.href "/") $ do 
       H.p "Hello world"</code></pre></div>
     <p class='mb-3'>
       The very site you are viewing (ema.srid.ca) is a live demonstration of this helper.
     </p>
+  <h2 id='tailwind-30' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Tailwind 3.0</h2>
+    <p class='mb-3'>
+      <strong>Note</strong> that because the above <a href='https://twind.dev/handbook/the-shim.html' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>twind JS shim</a> is used to support Tailwind styles your site will not render properly on web browsers with JavaScript disabled if you use this helper; it might also have trouble interoperating with other JS initializers on the site. See <a href='https://github.com/srid/ema/issues/20' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>this issue</a> for upcoming alternatives.
+    </p>
   
     <p class='mb-3'>
-      <strong>Note</strong> that because the <a href='https://twind.dev/handbook/the-shim.html' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>twind JS shim</a> is used to support Tailwind styles your site will not render properly on web browsers with JavaScript disabled if you use this helper; it might also have trouble interoperating with other JS initializers on the site. See <a href='https://github.com/srid/ema/issues/20' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>this issue</a> for upcoming alternatives.
+      For new Ema sites, it is recommended to use Tailwind 3.0 both in live server and static site generation. See <a href='https://github.com/srid/ema-template' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>ema-template</a> for an approach to this.
     </p>
   
   <!-- What goes in this file will appear below the note body-->
@@ -922,7 +926,7 @@ render emaAction model route = do
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
   
     <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div><p>Of course we want it to be real, by using our model value, as well as generate the HTML based on the route. We will also use the <a href='https://hackage.haskell.org/package/blaze-html' class='text-gray-600 hover:underline' target='_blank' rel='noopener'>blaze-html</a> library to make writing HTML in Haskell palatable (see also <a href='guide/helpers/tailwind' class='text-gray-600 font-bold hover:bg-gray-50'>the layout helper</a>). A more realistic starting point (if not the finishing product) would be:</p></div>
+      <div><p>Of course we want it to be real, by using our model value, as well as generate the HTML based on the route. We will also use the <a href='https://hackage.haskell.org/package/blaze-html' class='text-gray-600 hover:underline' target='_blank' rel='noopener'>blaze-html</a> library to make writing HTML in Haskell palatable (see also <a href='guide/helpers/blaze' class='text-gray-600 font-bold hover:bg-gray-50'>the layout helper</a>). A more realistic starting point (if not the finishing product) would be:</p></div>
     </div>
   
 </div>
@@ -937,7 +941,7 @@ render emaAction model route = do
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
   
     <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div><p>Finally, hot reload on <em>code</em> changes are supported via <a href='https://github.com/ndmitchell/ghcid' class='text-gray-600 hover:underline' target='_blank' rel='noopener'>ghcid</a>. The <a href='https://github.com/srid/ema-template' class='text-gray-600 hover:underline' target='_blank' rel='noopener'>template repo</a>'s `bin/run` script uses ghcid underneath. Any HTML DSL (like blaze-html – as used by the <a href='guide/helpers/tailwind' class='text-gray-600 font-bold hover:bg-gray-50'>Tailwind helper</a>) or CSS DSL automatically gets supported for hot-reload. If you choose to use a file-based HTML template language, you can enable hot-reload on template change using the <a href='guide/helpers/filesystem' class='text-gray-600 font-bold hover:bg-gray-50'>FileSystem helper</a>.</p></div>
+      <div><p>Finally, hot reload on <em>code</em> changes are supported via <a href='https://github.com/ndmitchell/ghcid' class='text-gray-600 hover:underline' target='_blank' rel='noopener'>ghcid</a>. The <a href='https://github.com/srid/ema-template' class='text-gray-600 hover:underline' target='_blank' rel='noopener'>template repo</a>'s `bin/run` script uses ghcid underneath. Any HTML DSL (like blaze-html – as used by the <a href='guide/helpers/blaze' class='text-gray-600 font-bold hover:bg-gray-50'>Blaze helper</a>) or CSS DSL automatically gets supported for hot-reload. If you choose to use a file-based HTML template language, you can enable hot-reload on template change using the <a href='guide/helpers/filesystem' class='text-gray-600 font-bold hover:bg-gray-50'>FileSystem helper</a>.</p></div>
     </div>
   
 </div>
@@ -952,7 +956,7 @@ render emaAction model route = do
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
   
     <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div><a href='guide/helpers/tailwind' class='text-gray-600 font-bold hover:bg-gray-50'>Tailwind + Blaze</a> – <span class='text-gray-500'>We recommend–but not mandate–Tailwind for CSS and blaze-html as HTML DSL</span></div>
+      <div><a href='guide/helpers/blaze' class='text-gray-600 font-bold hover:bg-gray-50'>Blaze</a> – <span class='text-gray-500'>We recommend–but not mandate–Tailwind for CSS and blaze-html as HTML DSL</span></div>
     </div>
   
 </div>
@@ -990,7 +994,7 @@ render emaAction model route = do
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 0.4.6.0'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 0.4.7.1'>
       <img class='w-6 h-6 hover:text-pink-700' src='_emanote-static/emanote-logo.svg' />
     </a>
   </div>
