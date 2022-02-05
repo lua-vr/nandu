@@ -24,7 +24,7 @@
 <script src='https://cdn.jsdelivr.net/combine/npm/prismjs@1.23.0/prism.min.js,npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js'></script>
 
   
-  <link href='tailwind.css?instanceId=1d5dc45d-748d-4dd6-8f3c-04ecc7b82474' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=aaf354e5-fb45-4c21-b61f-2f992910ea22' rel='stylesheet' type='text/css' />
 
   <!-- Heist error element -->
   <style type='text/css'>
@@ -109,7 +109,7 @@
           
             <li class='inline-flex items-center'>
               <a class='px-1 font-bold' href='guide/helpers'>
-                Helpers
+                Howto
               </a>
               <svg fill='currentColor' viewBox='0 0 20 20' class='w-auto h-5 text-gray-400'>
                 <path fill-rule='evenodd' d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z' clip-rule='evenodd'></path>
@@ -466,8 +466,8 @@
       </svg>
       
   
-    <a class='font-bold hover:underline truncate' title='Helpers' href='guide/helpers'>
-      Helpers
+    <a class='font-bold hover:underline truncate' title='Howto' href='guide/helpers'>
+      Howto
     </a>
     
       
@@ -897,6 +897,14 @@
       
         <li>
           <a href='https://github.com/jgm/commonmark-hs' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>commonmark-hs</a> – <span class='text-gray-500'>Lightweight parser by the same author of Pandoc</span>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          <a href='https://hackage.haskell.org/package/commonmark-simple-0.1.0.0' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>commonmark-simple</a> – <span class='text-gray-500'>Simpler interface to the above, with frontmatter support</span>
+        </li>
+      
+    </ul>
+  
         </li>
       
         <li>
@@ -904,11 +912,11 @@
         </li>
       
     </ul>
-  <h2 id='helper' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Helper</h2>
+  <h2 id='commonmark-simple' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'><code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>commonmark-simple</code></h2>
     <p class='mb-3'>
-      Ema provides a helper to parse Markdown files with YAML frontmatter, using commonmark-hs. If you are parsing front matter, you can use any type that has a <a href='https://hackage.haskell.org/package/HsYAML-0.2.1.0/docs/Data-YAML.html#t:FromYAML' class='text-pink-600 hover:underline' target='_blank' rel='noopener'><code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>FromYAML</code></a> instance.
+      <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>commonmark-simple</code> uses commonmark-hs to provide a simpler API, along with front matter support. If you are parsing front matter, you can use any type that has a <a href='https://hackage.haskell.org/package/HsYAML-0.2.1.0/docs/Data-YAML.html#t:FromYAML' class='text-pink-600 hover:underline' target='_blank' rel='noopener'><code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>FromYAML</code></a> instance.
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='haskell language-haskell'>import qualified Ema.Helper.Markdown as Markdown
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='haskell language-haskell'>import qualified Commonmark.Simple as CS
 
 -- Front matter metadata can be any type with a `FromYAML` instance
 -- 
@@ -917,14 +925,14 @@
 type Metadata = Map Text Text 
 
 -- Returns `Either Text (Metadata, Pandoc)`
-Markdown.parseMarkdownWithFrontMatter @Metadata 
+CS.parseMarkdownWithFrontMatter @Metadata 
     "test.md" "Hello *world*"</code></pre></div>
     <p class='mb-3'>
       The template repo, as well as <a href='https://github.com/srid/emanote' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>Emanote</a> (used to generate this site), uses this helper to parse Markdown files into Pandoc AST. Consult <a href='https://github.com/srid/ema-template/blob/master/src/Main.hs' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>the template repo’s source code</a> for details.
     </p>
   
     <p class='mb-3'>
-      Note that with Ema you can get <a href='concepts/hot-reload' class='text-pink-600 mavenLinkBold hover:underline'>hot reload</a> support for your Markdown files using <a href='guide/helpers/filesystem' class='text-pink-600 mavenLinkBold hover:underline'>filesystem notifications</a>.
+      Note that with Ema you can get <a href='concepts/hot-reload' class='text-pink-600 mavenLinkBold hover:underline'>hot reload</a> support for your Markdown files using <a href='guide/helpers/filesystem' class='text-pink-600 mavenLinkBold hover:underline'>the <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>unionmount</code> package</a>.
     </p>
   
   <!-- What goes in this file will appear below the note body-->
@@ -938,7 +946,7 @@ Markdown.parseMarkdownWithFrontMatter @Metadata
       
         <li>
           <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='guide/helpers'>
-            Helpers
+            Howto
           </a>
           
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
