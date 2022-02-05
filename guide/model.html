@@ -24,7 +24,7 @@
 <script src='https://cdn.jsdelivr.net/combine/npm/prismjs@1.23.0/prism.min.js,npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js'></script>
 
   
-  <link href='tailwind.css?instanceId=dc73d8a8-6a56-4e94-a295-d128d6a2a5d0' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=1d5dc45d-748d-4dd6-8f3c-04ecc7b82474' rel='stylesheet' type='text/css' />
 
   <!-- Heist error element -->
   <style type='text/css'>
@@ -900,7 +900,7 @@
     LVar.set model =&lt;&lt; liftIO getCurrentTime
     liftIO $ threadDelay $ 1 * 1000000</code></pre></div>
     <p class='mb-3'>
-      In this contrived example (<a href='https://github.com/srid/ema/blob/master/src/Ema/Example/Ex02_Clock.hs' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>full code here</a>), we are using <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>UTCTime</code> as the model. We set the initial value using <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>LVar.set</code>, and then continually update the current time every second. Every time the model gets updated, the web browser will <a href='concepts/hot-reload' class='text-pink-600 mavenLinkBold hover:underline'>hot reload</a> to display the up to date value. For the <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>BlogPosts</code> model, you would typically use <a href='https://hackage.haskell.org/package/fsnotify' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>fsnotify</a> to monitor changes to the underlying Markdown files, but note that Ema provides <a href='guide/helpers/filesystem' class='text-pink-600 mavenLinkBold hover:underline'>a helper</a> for that.
+      In this contrived example (<a href='https://github.com/srid/ema/blob/master/src/Ema/Example/Ex02_Clock.hs' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>full code here</a>), we are using <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>UTCTime</code> as the model. We set the initial value using <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>LVar.set</code>, and then continually update the current time every second. Every time the model gets updated, the web browser will <a href='concepts/hot-reload' class='text-pink-600 mavenLinkBold hover:underline'>hot reload</a> to display the up to date value. For the <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>BlogPosts</code> model, you would typically use <a href='https://hackage.haskell.org/package/fsnotify' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>fsnotify</a> to monitor changes to the underlying Markdown files, or even better use <a href='guide/helpers/filesystem' class='text-pink-600 mavenLinkBold hover:underline'>the unionmount library</a>.
     </p>
   <h2 id='advanced-tips' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Advanced tips</h2>
     <p class='mb-3'>
@@ -932,7 +932,7 @@
     </div>
   
     <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div><p>In most cases, however, you probably want to use the higher level function <code>mountOnLVar</code>. It “mounts” the files you specify onto the <a href='concepts/lvar' class='text-gray-600 font-bold hover:bg-gray-50'>model LVar</a> such that any changes to them are <em>automatically</em> reflected in your <a href='guide/model' class='text-gray-600 font-bold hover:bg-gray-50'>model</a> value.</p></div>
+      <div><p><code>mountOnLVar</code> “mounts” the files you specify onto the <a href='concepts/lvar' class='text-gray-600 font-bold hover:bg-gray-50'>model LVar</a> such that any changes to them are <em>automatically</em> reflected in your <a href='guide/model' class='text-gray-600 font-bold hover:bg-gray-50'>model</a> value.</p></div>
     </div>
   
 </div>

@@ -24,7 +24,7 @@
 <script src='https://cdn.jsdelivr.net/combine/npm/prismjs@1.23.0/prism.min.js,npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js'></script>
 
   
-  <link href='tailwind.css?instanceId=dc73d8a8-6a56-4e94-a295-d128d6a2a5d0' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=1d5dc45d-748d-4dd6-8f3c-04ecc7b82474' rel='stylesheet' type='text/css' />
 
   <!-- Heist error element -->
   <style type='text/css'>
@@ -900,43 +900,30 @@
     </p>
   
     <p class='mb-3'>
-      For filesystem changes, Ema provides a helper based on <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>fsnotify</code> in the <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>Ema.Helper.FileSystem</code> module. You can use it as follows
+      Much of this is provided by the <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>System.UnionMount</code> module from <a href='https://hackage.haskell.org/package/unionmount' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>unionmount</a> package. You should use it:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='haskell language-haskell'>import qualified Ema.Helper.FileSystem as FileSystem
-
-type Model = Map FilePath Text
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='haskell language-haskell'>import qualified System.UnionMount as UnionMount
 
 Ema.runEma render $ \model -&gt; do
-  LVar.set model =&lt;&lt; do
-    mdFiles &lt;- FileSystem.filesMatching "." ["**/*.md"]
-    forM mdFiles readFileText
-      &lt;&&gt; Map.fromList 
-  FileSystem.onChange "." $ \fp -&gt; \case
-    FileSystem.Update -&gt;
-      when (takeExtension fp == ".md") $ do
-        log $ "Update: " &lt;&gt; fp 
-        s &lt;- readFileText fp
-        LVar.modify model $ Map.insert fp s
-    FileSystem.Delete -&gt;
-      whenJust (takeExtension fp == ".md") $ do
-        log $ "Delete: " &lt;&gt; fp
-        LVar.modify model $ Map.delete fp</code></pre></div>
+  let pats = [((), "**/*.md")]
+      ignorePats = [".*"]
+  void . UnionMount.mountOnLVar "." pats ignorePats model model0 $ \() fp action -&gt; do
+    case action of
+      UnionMount.Refresh _ () -&gt; do
+        when (takeExtension fp == ".md") $ do
+          log $ "Update: " &lt;&gt; fp 
+          s &lt;- readFileText fp
+          pure $ Map.insert fp s
+      UnionMount.Delete -&gt;
+        whenJust (takeExtension fp == ".md") $ do
+          log $ "Delete: " &lt;&gt; fp
+          pure $ Map.delete fp</code></pre></div>
     <p class='mb-3'>
-      In most cases, however, you probably want to use the higher level function <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>mountOnLVar</code>. It “mounts” the files you specify onto the <a href='concepts/lvar' class='text-pink-600 mavenLinkBold hover:underline'>model LVar</a> such that any changes to them are <em>automatically</em> reflected in your <a href='guide/model' class='text-pink-600 mavenLinkBold hover:underline'>model</a> value.
-    </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='haskell language-haskell'>Ema.runEma render $ \model -&gt; do
-  FileSystem.mountOnLVar "." ["**/*.md"] [] model def $ \() fp -&gt; \case
-    FileSystem.Update () -&gt; do
-      s &lt;- readFileText fp
-      pure $ Map.insert fp s
-    FileSystem.Delete -&gt;
-      pure $ Map.delete fp</code></pre></div>
-    <p class='mb-3'>
-      <a href='https://github.com/srid/ema-template/blob/master/src/Main.hs' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>Full example here</a>.
+      <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>mountOnLVar</code> “mounts” the files you specify onto the <a href='concepts/lvar' class='text-pink-600 mavenLinkBold hover:underline'>model LVar</a> such that any changes to them are <em>automatically</em> reflected in your <a href='guide/model' class='text-pink-600 mavenLinkBold hover:underline'>model</a> value.
     </p>
   
     <p class='mb-3'>
-      This functionality is mostly provided by the <a href='https://hackage.haskell.org/package/unionmount' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>unionmount</a> library.
+      <a href='https://github.com/srid/ema-template/blob/master/src/Main.hs' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>Full example here</a>.
     </p>
   
   <!-- What goes in this file will appear below the note body-->
@@ -986,11 +973,11 @@ Ema.runEma render $ \model -&gt; do
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
   
     <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div><p>Finally, hot reload on <em>code</em> changes are supported via <a href='https://github.com/ndmitchell/ghcid' class='text-gray-600 hover:underline' target='_blank' rel='noopener'>ghcid</a>. The <a href='https://github.com/srid/ema-template' class='text-gray-600 hover:underline' target='_blank' rel='noopener'>template repo</a>'s `bin/run` script uses ghcid underneath. Any HTML DSL (like blaze-html – as used by the <a href='guide/helpers/blaze' class='text-gray-600 font-bold hover:bg-gray-50'>Blaze helper</a>) or CSS DSL automatically gets supported for hot-reload. If you choose to use a file-based HTML template language, you can enable hot-reload on template change using the <a href='guide/helpers/filesystem' class='text-gray-600 font-bold hover:bg-gray-50'>FileSystem helper</a>.</p></div>
+      <div><p>Finally, hot reload on <em>code</em> changes are supported via <a href='https://github.com/ndmitchell/ghcid' class='text-gray-600 hover:underline' target='_blank' rel='noopener'>ghcid</a>. The <a href='https://github.com/srid/ema-template' class='text-gray-600 hover:underline' target='_blank' rel='noopener'>template repo</a>'s `bin/run` script uses ghcid underneath. Any HTML DSL (like blaze-html – as used by the <a href='guide/helpers/blaze' class='text-gray-600 font-bold hover:bg-gray-50'>Blaze helper</a>) or CSS DSL automatically gets supported for hot-reload. If you choose to use a file-based HTML template language, you can enable hot-reload on template change using the <a href='guide/helpers/filesystem' class='text-gray-600 font-bold hover:bg-gray-50'><code>unionmount</code> library</a>.</p></div>
     </div>
   
     <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div><p>For anything outside of the Haskell code, your code becomes responsible for monitoring and updating the model <a href='concepts/lvar' class='text-gray-600 font-bold hover:bg-gray-50'>LVar</a>. The <a href='guide/helpers/filesystem' class='text-gray-600 font-bold hover:bg-gray-50'>filesystem helper</a> already provides utilities to facilitate this for monitoring changes to files and directories.</p></div>
+      <div><p>For anything outside of the Haskell code, your code becomes responsible for monitoring and updating the model <a href='concepts/lvar' class='text-gray-600 font-bold hover:bg-gray-50'>LVar</a>. The <a href='guide/helpers/filesystem' class='text-gray-600 font-bold hover:bg-gray-50'><code>unionmount</code> library</a> already provides utilities to facilitate this for monitoring changes to files and directories.</p></div>
     </div>
   
 </div>
@@ -1005,7 +992,7 @@ Ema.runEma render $ \model -&gt; do
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
   
     <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div><a href='guide/helpers/filesystem' class='text-gray-600 font-bold hover:bg-gray-50'>Working with files</a> – <span class='text-gray-500'>Ema provides a helper to support hot-reload on files</span></div>
+      <div><a href='guide/helpers/filesystem' class='text-gray-600 font-bold hover:bg-gray-50'>Working with files</a> – <span class='text-gray-500'>Use <code>unionmount</code> to support hot-reload on files</span></div>
     </div>
   
 </div>
@@ -1020,7 +1007,7 @@ Ema.runEma render $ \model -&gt; do
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
   
     <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div><p>In this contrived example (<a href='https://github.com/srid/ema/blob/master/src/Ema/Example/Ex02_Clock.hs' class='text-gray-600 hover:underline' target='_blank' rel='noopener'>full code here</a>), we are using <code>UTCTime</code> as the model. We set the initial value using <code>LVar.set</code>, and then continually update the current time every second. Every time the model gets updated, the web browser will <a href='concepts/hot-reload' class='text-gray-600 font-bold hover:bg-gray-50'>hot reload</a> to display the up to date value. For the <code>BlogPosts</code> model, you would typically use <a href='https://hackage.haskell.org/package/fsnotify' class='text-gray-600 hover:underline' target='_blank' rel='noopener'>fsnotify</a> to monitor changes to the underlying Markdown files, but note that Ema provides <a href='guide/helpers/filesystem' class='text-gray-600 font-bold hover:bg-gray-50'>a helper</a> for that.</p></div>
+      <div><p>In this contrived example (<a href='https://github.com/srid/ema/blob/master/src/Ema/Example/Ex02_Clock.hs' class='text-gray-600 hover:underline' target='_blank' rel='noopener'>full code here</a>), we are using <code>UTCTime</code> as the model. We set the initial value using <code>LVar.set</code>, and then continually update the current time every second. Every time the model gets updated, the web browser will <a href='concepts/hot-reload' class='text-gray-600 font-bold hover:bg-gray-50'>hot reload</a> to display the up to date value. For the <code>BlogPosts</code> model, you would typically use <a href='https://hackage.haskell.org/package/fsnotify' class='text-gray-600 hover:underline' target='_blank' rel='noopener'>fsnotify</a> to monitor changes to the underlying Markdown files, or even better use <a href='guide/helpers/filesystem' class='text-gray-600 font-bold hover:bg-gray-50'>the unionmount library</a>.</p></div>
     </div>
   
 </div>
