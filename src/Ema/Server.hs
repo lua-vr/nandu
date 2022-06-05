@@ -309,9 +309,6 @@ wsClientJS =
 
         // WebSocket logic: watching for server changes & route switching
         function init(reconnecting) {
-          // The route current DOM is displaying
-          let routeVisible = document.location.pathname;
-
           const verb = reconnecting ? "Reopening" : "Opening";
           console.log(`ema: $${verb} conn $${wsUrl} ...`);
           window.connecting();
@@ -330,41 +327,6 @@ wsClientJS =
             sendObservePath(document.location.pathname);
           };
 
-          function switchRoute(path, hash = "") {
-             console.log(`ema: → Switching to $${path + hash}`);
-             window.history.pushState({}, "", path + hash);
-             sendObservePath(path);
-          }
-
-          function scrollToAnchor(hash) {
-            console.log(`ema: Scroll to $${hash}`)
-            var el = document.querySelector(hash);
-            if (el !== null) {
-              el.scrollIntoView({ behavior: 'smooth' });
-            }
-          };
-
-          function handleRouteClicks(e) {
-              const origin = e.target.closest("a");
-              if (origin) {
-                if (window.location.host === origin.host && origin.getAttribute("target") != "_blank") {
-                  if (origin.getAttribute("href").startsWith("#")) {
-                    // Switching to local anchor
-                    window.history.pushState({}, "", window.location.pathname + origin.hash);
-                    scrollToAnchor(window.location.hash);
-                    e.preventDefault();
-                  }else{
-                    // Switching to another route
-                    switchRoute(origin.pathname, origin.hash);
-                    e.preventDefault();
-                  }
-                };
-              }
-            };
-          // Intercept route click events, and ask server for its HTML whilst
-          // managing history state.
-          window.addEventListener(`click`, handleRouteClicks);
-
           ws.onopen = () => {
             console.log(`ema: ... connected!`);
             // window.connected();
@@ -382,9 +344,8 @@ wsClientJS =
 
           ws.onclose = () => {
             console.log("ema: reconnecting ..");
-            window.removeEventListener(`click`, handleRouteClicks);
             window.reloading();
-            // Reconnect after as small a time is possible, then retry again. 
+            // Reconnect after as small a time is possible, then retry again.
             // ghcid can take 1s or more to reboot. So ideally we need an
             // exponential retry logic.
             // 
@@ -403,31 +364,14 @@ wsClientJS =
               document.location.href = evt.data.slice("REDIRECT ".length);
             } else {
               console.log("ema: ✍ Patching DOM");
+              window.dispatchEvent(new CustomEvent('ema-before-dom-patch'));
               setHtml(document.documentElement, evt.data);
-              if (routeVisible != document.location.pathname) {
-                // This is a new route switch; scroll up.
-                window.scrollTo({ top: 0});
-                routeVisible = document.location.pathname;
-              }
-              if (window.location.hash) {
-                scrollToAnchor(window.location.hash);
-              }
+              window.dispatchEvent(new CustomEvent('ema-after-dom-patch'));
               watchCurrentRoute();
             };
           };
           window.onbeforeunload = evt => { ws.close(); };
           window.onpagehide = evt => { ws.close(); };
-
-          // When the user clicks the back button, resume watching the URL in
-          // the addressback, which has the effect of loading it immediately.
-          window.onpopstate = function(e) {
-            watchCurrentRoute();
-          };
-
-          // API for user invocations 
-          window.ema = {
-            switchRoute: switchRoute
-          };
         };
         
         window.onpageshow = function () { init(false) };
