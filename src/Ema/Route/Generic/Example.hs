@@ -54,7 +54,7 @@ instance IsRoute NumRoute where
 
 instance HasSubModels R where
   subModels (a, b, _) =
-    I () :* I () :* I a :* I b :* Nil
+    I a :* I b :* Nil
 
 instance EmaSite R where
   siteInput _ () = pure $ pure (42, 21, "inner")
@@ -77,7 +77,7 @@ data TR = TR_Index | TR_Inner R
 
 instance HasSubModels TR where
   subModels (m, _) =
-    I () :* I m :* Nil
+    I m :* Nil
 
 instance EmaSite TR where
   siteInput x () = do
@@ -91,7 +91,7 @@ instance EmaSite TR where
       siteOutput @R (rp % _As @"TR_Inner") (trInnerModel m) r
     where
       trInnerModel model =
-        let I () :* I m' :* Nil = subModels @TR model
+        let I m' :* Nil = subModels @TR model
          in m'
 
 mainTop :: IO ()
