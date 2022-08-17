@@ -1,17 +1,19 @@
+<!DOCTYPE html>
 <html lang='en'>
 
 <head>
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <title>
-    Working with routes – Ema
+    unionmount – Ema
   </title>
   
     
-      <meta property='og:description' content />
+      <meta property='og:description' content="unionmount is a Haskell library that wraps fsnotify to provide a ([[dynamic]],[])-friendly API to listen on filesystem changes and update an in-memory ([[model]],[]). The library interface is such that you can mount multiple directories (union'ing them in the process), and have it update the model when files on any of those directories change." />
       <meta property='og:site_name' content='Ema' />
+      <meta property='og:image' content />
       <meta property='og:type' content='website' />
-      <meta property='og:title' content='Working with routes' />
+      <meta property='og:title' content='unionmount' />
     
     
       <base href='/' />
@@ -19,15 +21,17 @@
     
     <link rel='manifest' href='/static/manifest.json' />
 <meta name='theme-color' content='#DB2777' />
-<!-- Syntax highlighting -->
-<link href='https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-tomorrow.css' rel='stylesheet' />
-<script src='https://cdn.jsdelivr.net/combine/npm/prismjs@1.23.0/prism.min.js,npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js'></script>
+<!-- highlight.js -->
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/hybrid.min.css' />
+<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/haskell.min.js' integrity='sha512-byZkqR8FeRucjNQnEDNvbtUWMmtJqmNGfwXMRwjGgSbtgo7cvqGkYLdjgSO3ig11xUjKhdP7AhFXPvTTUpaGYQ==' crossorigin='anonymous' referrerpolicy='no-referrer'></script>
+<script>hljs.highlightAll();</script>
 
   
-  <link href='tailwind.css?instanceId=3b2c7111-0acc-45e3-a15d-15d390765e48' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=a1bc5deb-e44e-40a1-9c32-313942d1f368' rel='stylesheet' type='text/css' />
 
   <!-- Heist error element -->
-  <style type='text/css'>
+  <style>
     strong.error {
       color: lightcoral;
       font-size: 90%;
@@ -39,7 +43,8 @@
 <style>
   @font-face {
     font-family: 'MavenPro';
-    src: url('_emanote-static/fonts/Maven_Pro/MavenPro-VariableFont_wght.ttf') format("truetype");
+    /* FIXME: This ought to be: ${ema:emanoteStaticLayerUrl}/fonts/Maven_Pro/MavenPro-VariableFont_wght.ttf */
+    src: url(_emanote-static/fonts/Maven_Pro/MavenPro-VariableFont_wght.ttf) format("truetype");
     font-display: swap;
   }
 
@@ -68,7 +73,7 @@
   }
 </style>
 
-  <head-main></head-main>
+  
 </head>
 
 <!-- DoNotFormat -->
@@ -104,8 +109,8 @@
             </li>
           
             <li class='inline-flex items-center'>
-              <a class='px-1 font-bold' href='guide'>
-                Guide
+              <a class='px-1 font-bold' href='topics'>
+                Topics
               </a>
               <svg fill='currentColor' viewBox='0 0 20 20' class='w-auto h-5 text-gray-400'>
                 <path fill-rule='evenodd' d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z' clip-rule='evenodd'></path>
@@ -171,9 +176,7 @@
               <!-- Variable bindings for this tree-->
   
     
-      
-      
-    
+  
 
 
 
@@ -186,35 +189,38 @@
   <div class='flex items-center my-2 space-x-2 justify-left'>
     
     
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-4 h-4 flex-shrink-0 inline text-gray-700' viewBox='0 0 20 20' fill='currentColor'>
-        <path fill-rule='evenodd' d='M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z' clip-rule='evenodd'></path>
-        <path d='M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z'></path>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-4 h-4 flex-shrink-0 inline text-gray-500' viewBox='0 0 20 20' fill='currentColor'>
+        <path d='M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z'></path>
       </svg>
-      
+    
   
-    <a class='font-bold hover:underline truncate' title='Getting Started' href='start'>
+    <a class='hover:underline truncate' title='Getting Started' href='start'>
       Getting Started
     </a>
     
       
+        <span class='text-gray-300' title='1 children inside'>
+          1
+        </span>
+      
+    
   </div>
 
   <!-- Node's children forest, displayed only on active trees
     TODO: Use <details> to toggle visibility?
   -->
   
-    
-      <!-- Variable bindings for this tree-->
+</div>
+            
+              <!-- Variable bindings for this tree-->
   
     
-      
-    
-    
+  
 
 
 
   
-
+  
 
 <!-- Rendering of this tree -->
 <div class='pl-2'>
@@ -222,27 +228,65 @@
   <div class='flex items-center my-2 space-x-2 justify-left'>
     
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-4 h-4 flex-shrink-0 inline text-gray-500' viewBox='0 0 20 20' fill='currentColor'>
+        <path d='M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z'></path>
       </svg>
     
   
-    <a class='hover:underline truncate' title='Tutorial' href='start/tutorial'>
+    <a class='hover:underline truncate' title='Tutorial' href='tutorial'>
       Tutorial
     </a>
     
       
+        <span class='text-gray-300' title='4 children inside'>
+          4
+        </span>
+      
+    
   </div>
 
   <!-- Node's children forest, displayed only on active trees
     TODO: Use <details> to toggle visibility?
   -->
   
+</div>
+            
+              <!-- Variable bindings for this tree-->
+  
     
   
-</div>
+
+
+
+  
+  
+
+<!-- Rendering of this tree -->
+<div class='pl-2'>
+  <!-- Node's rootLabel-->
+  <div class='flex items-center my-2 space-x-2 justify-left'>
     
+    
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-4 h-4 flex-shrink-0 inline text-gray-500' viewBox='0 0 20 20' fill='currentColor'>
+        <path d='M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z'></path>
+      </svg>
+    
+  
+    <a class='hover:underline truncate' title='Guide' href='guide'>
+      Guide
+    </a>
+    
+      
+        <span class='text-gray-300' title='4 children inside'>
+          4
+        </span>
+      
+    
+  </div>
+
+  <!-- Node's children forest, displayed only on active trees
+    TODO: Use <details> to toggle visibility?
+  -->
   
 </div>
             
@@ -270,8 +314,8 @@
       </svg>
       
   
-    <a class='font-bold hover:underline truncate' title='Guide' href='guide'>
-      Guide
+    <a class='font-bold hover:underline truncate' title='Topics' href='topics'>
+      Topics
     </a>
     
       
@@ -285,9 +329,7 @@
       <!-- Variable bindings for this tree-->
   
     
-      
-    
-    
+  
 
 
 
@@ -306,18 +348,18 @@
       </svg>
     
   
-    <a class='hover:underline truncate' title='Defining your model' href='guide/model'>
-      Defining your model
+    <a class='hover:underline truncate' title='Live Server' href='topics/live-server'>
+      Live Server
     </a>
     
       
+        
+    
   </div>
 
   <!-- Node's children forest, displayed only on active trees
     TODO: Use <details> to toggle visibility?
   -->
-  
-    
   
 </div>
     
@@ -341,8 +383,8 @@
       </svg>
       
   
-    <a class='font-bold text-pink-600 hover:underline truncate' title='Working with routes' href='guide/routes'>
-      Working with routes
+    <a class='font-bold text-pink-600 hover:underline truncate' title='unionmount' href='topics/unionmount'>
+      <code>unionmount</code>
     </a>
     
       
@@ -359,9 +401,7 @@
       <!-- Variable bindings for this tree-->
   
     
-      
-    
-    
+  
 
 
 
@@ -380,261 +420,25 @@
       </svg>
     
   
-    <a class='hover:underline truncate' title='Defining Ema instance' href='guide/class'>
-      Defining Ema instance
-    </a>
-    
-      
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-    
-  
-</div>
-    
-      <!-- Variable bindings for this tree-->
-  
-    
-      
-    
-    
-
-
-
-  
-
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    
-    
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
-      </svg>
-    
-  
-    <a class='hover:underline truncate' title='Rendering HTML' href='guide/render'>
-      Rendering HTML
-    </a>
-    
-      
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-    
-  
-</div>
-    
-  
-</div>
-            
-              <!-- Variable bindings for this tree-->
-  
-    
-      
-      
-    
-
-
-
-  
-  
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    
-    
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-4 h-4 flex-shrink-0 inline text-gray-700' viewBox='0 0 20 20' fill='currentColor'>
-        <path fill-rule='evenodd' d='M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z' clip-rule='evenodd'></path>
-        <path d='M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z'></path>
-      </svg>
-      
-  
-    <a class='font-bold hover:underline truncate' title='Howto' href='howto'>
-      Howto
-    </a>
-    
-      
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-    
-      <!-- Variable bindings for this tree-->
-  
-    
-      
-    
-    
-
-
-
-  
-
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    
-    
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
-      </svg>
-    
-  
-    <a class='hover:underline truncate' title='Working with files' href='howto/filesystem'>
-      Working with files
-    </a>
-    
-      
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-    
-  
-</div>
-    
-      <!-- Variable bindings for this tree-->
-  
-    
-      
-    
-    
-
-
-
-  
-
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    
-    
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
-      </svg>
-    
-  
-    <a class='hover:underline truncate' title='Using Markdown' href='howto/markdown'>
-      Using Markdown
-    </a>
-    
-      
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-    
-  
-</div>
-    
-  
-</div>
-            
-              <!-- Variable bindings for this tree-->
-  
-    
-      
-      
-    
-
-
-
-  
-  
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    
-    
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-4 h-4 flex-shrink-0 inline text-gray-700' viewBox='0 0 20 20' fill='currentColor'>
-        <path fill-rule='evenodd' d='M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z' clip-rule='evenodd'></path>
-        <path d='M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z'></path>
-      </svg>
-      
-  
-    <a class='font-bold hover:underline truncate' title='Concepts' href='concepts'>
-      Concepts
-    </a>
-    
-      
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-    
-      <!-- Variable bindings for this tree-->
-  
-    
-      
-    
-    
-
-
-
-  
-
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    
-    
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
-      </svg>
-    
-  
-    <a class='hover:underline truncate' title='Hot Reload' href='concepts/hot-reload'>
+    <a class='hover:underline truncate' title='Hot Reload' href='topics/hot-reload'>
       Hot Reload
     </a>
     
       
+        
+    
   </div>
 
   <!-- Node's children forest, displayed only on active trees
     TODO: Use <details> to toggle visibility?
   -->
   
-    
-  
 </div>
     
       <!-- Variable bindings for this tree-->
   
     
-      
-    
-    
+  
 
 
 
@@ -653,105 +457,25 @@
       </svg>
     
   
-    <a class='hover:underline truncate' title='LVar' href='concepts/lvar'>
-      LVar
-    </a>
-    
-      
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-    
-  
-</div>
-    
-      <!-- Variable bindings for this tree-->
-  
-    
-      
-    
-    
-
-
-
-  
-
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    
-    
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
-      </svg>
-    
-  
-    <a class='hover:underline truncate' title='Slug' href='concepts/slug'>
-      Slug
-    </a>
-    
-      
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-    
-  
-</div>
-    
-      <!-- Variable bindings for this tree-->
-  
-    
-      
-    
-    
-
-
-
-  
-
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    
-    
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
-      </svg>
-    
-  
-    <a class='hover:underline truncate' title='CLI' href='concepts/cli'>
+    <a class='hover:underline truncate' title='CLI' href='topics/cli'>
       CLI
     </a>
     
       
+        
+    
   </div>
 
   <!-- Node's children forest, displayed only on active trees
     TODO: Use <details> to toggle visibility?
   -->
   
-    
-  
 </div>
     
       <!-- Variable bindings for this tree-->
   
     
-      
-    
-    
+  
 
 
 
@@ -770,18 +494,55 @@
       </svg>
     
   
-    <a class='hover:underline truncate' title='Logging' href='concepts/logging'>
+    <a class='hover:underline truncate' title='Logging' href='topics/logging'>
       Logging
     </a>
     
       
+        
+    
   </div>
 
   <!-- Node's children forest, displayed only on active trees
     TODO: Use <details> to toggle visibility?
   -->
   
+</div>
     
+      <!-- Variable bindings for this tree-->
+  
+    
+  
+
+
+
+  
+
+
+<!-- Rendering of this tree -->
+<div class='pl-2'>
+  <!-- Node's rootLabel-->
+  <div class='flex items-center my-2 space-x-2 justify-left'>
+    
+    
+      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
+        </path>
+      </svg>
+    
+  
+    <a class='hover:underline truncate' title='Asset' href='topics/asset'>
+      Asset
+    </a>
+    
+      
+        
+    
+  </div>
+
+  <!-- Node's children forest, displayed only on active trees
+    TODO: Use <details> to toggle visibility?
+  -->
   
 </div>
     
@@ -791,9 +552,7 @@
               <!-- Variable bindings for this tree-->
   
     
-      
-    
-    
+  
 
 
 
@@ -812,18 +571,18 @@
       </svg>
     
   
-    <a class='hover:underline truncate' title='💻 Showcase' href='showcase'>
-      💻 Showcase
+    <a class='hover:underline truncate' title='💻 Examples' href='examples'>
+      💻 Examples
     </a>
     
       
+        
+    
   </div>
 
   <!-- Node's children forest, displayed only on active trees
     TODO: Use <details> to toggle visibility?
   -->
-  
-    
   
 </div>
             
@@ -836,47 +595,20 @@
           <main class='px-4 py-4'>
             <h1 class='flex items-end justify-center mb-4 p-3 bg-pink-100 text-5xl font-extrabold text-black rounded'>
   <a class='z-40 tracking-tighter '>
-    Working with routes
+    <code>unionmount</code>
   </a>
 </h1>
             <article class='overflow-auto'>
   <!-- What goes in this file will appear on top of note body-->
   
     <p class='mb-3'>
-      Ema gives you the freedom to use any Haskell type for representing your site routes. You don’t need complicated rewrite rules. Routes are best represented using what are known as <em>sum types</em> (or ADT, short for <em>Abstract Data Type</em>). Here’s an example of a route type:
+      <a href='https://github.com/srid/unionmount' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>unionmount</a> is a Haskell library that wraps <code class='py-0.5 px-0.5 bg-gray-100'>fsnotify</code> to provide a <a href='guide/model/dynamic' class='text-pink-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Dynamic</a>-friendly API to listen on filesystem changes and update an in-memory <a href='guide/model' class='text-pink-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Model type</a>. The library interface is such that you can “mount” multiple directories (<a href='https://en.wikipedia.org/wiki/Union_mount' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>union</a>'ing them in the process), and have it update the model when files on any of those directories change.
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='haskell language-haskell'>data Route 
-  = Index
-  | About</code></pre></div>
+  
     <p class='mb-3'>
-      This type represents two routes pointing to – the index page (<code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>/</code>) and the about page (<code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>/about</code>). Designing the route type is only half the job; you will also need to tell Ema how to convert it to / from the browser URL. We will explain this in the next section.
+      <a href='https://emanote.srid.ca/' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>Emanote</a> uses it to monitor Markdown files (and other files) in its layers.
     </p>
-  <h2 id='advanced-example' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Advanced example</h2>
-    <p class='mb-3'>
-      Here’s one possible way to design the route type for a weblog site,
-    </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='haskell language-haskell'>data Route
-  = Home 
-  | Blog BlogRoute
-  | Tag TagRoute
-
-data BlogRoute
-  = BlogIndex
-  | BlogPost Ema.Slug
-
-data TagRoute
-  = TagListing
-  | Tag Tag
-
-newtype Tag = Tag Text</code></pre></div>
-    <p class='mb-3'>
-      Defining <em>hierarchical routes</em> like this is useful if you want to render <em>parts</em> of your HTML as being common to only a subset of your site, such as adding a blog header to all blog pages, but not to tag pages.
-    </p>
-  <div class='mt-8 border-t-2 border-pink-500 pb-1 pl-1 bg-gray-50 rounded'>
-    <p class='mb-3'>
-      <span class='py-2 text-xl italic font-bold'>Next</span>, with our model and routes in place, <a href='guide/class' class='text-pink-600 mavenLinkBold hover:underline'>we will make them work with Ema</a> by defining their static site behaviour.
-    </p>
-  </div>
+  
   <!-- What goes in this file will appear below the note body-->
 </article>
             <div class='flex flex-col lg:flex-row lg:space-x-2'>
@@ -887,59 +619,14 @@ newtype Tag = Tag Text</code></pre></div>
     <ul class='space-y-1'>
       
         <li>
-          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='start/tutorial'>
-            Tutorial
-          </a>
-          
-            <div class='mb-4 overflow-auto text-sm text-gray-500'>
-  
-    <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div><p>Okay, but that’s just <em>one</em> page. But we want to add a second page. And might as well add more content than “Hello, Ema”. Let’s do that next. The first step is define the <a href='guide/routes' class='text-gray-600 font-bold hover:bg-gray-50'>route</a> type that corresponds to our site’s pages. Add the following:</p></div>
-    </div>
-  
-</div>
-          
-        </li>
-      
-        <li>
-          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='guide/render'>
-            Rendering HTML
-          </a>
-          
-            <div class='mb-4 overflow-auto text-sm text-gray-500'>
-  
-    <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div><p>Once you have <a href='guide/model' class='text-gray-600 font-bold hover:bg-gray-50'>model</a> and <a href='guide/routes' class='text-gray-600 font-bold hover:bg-gray-50'>routes</a> in place and <a href='guide/class' class='text-gray-600 font-bold hover:bg-gray-50'>constrained</a>, the last piece of the puzzle is to write a function that takes both as arguments and returns file content (lazy bytestring, to be exact) to generate. This function can be as simple as the following:</p></div>
-    </div>
-  
-</div>
-          
-        </li>
-      
-        <li>
-          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='guide'>
-            Guide
-          </a>
-          
-            <div class='mb-4 overflow-auto text-sm text-gray-500'>
-  
-    <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div><a href='guide/routes' class='text-gray-600 font-bold hover:bg-gray-50'>Working with routes</a> – <span class='text-gray-500'>Unless you site has a single page (<code>index.html</code>), you will need to manage a set of routes</span></div>
-    </div>
-  
-</div>
-          
-        </li>
-      
-        <li>
           <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='guide/model'>
-            Defining your model
+            Model type
           </a>
           
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
   
     <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div><p><span class='py-2 text-xl italic font-bold'>Next</span>, we will <a href='guide/routes' class='text-gray-600 font-bold hover:bg-gray-50'>talk about routes</a>.</p></div>
+      <div><a href='topics/unionmount' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'><code>unionmount</code></a> - mounting local files into Haskell in-memory model with change updates.</div>
     </div>
   
 </div>
@@ -947,18 +634,33 @@ newtype Tag = Tag Text</code></pre></div>
         </li>
       
         <li>
-          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='guide/class'>
-            Defining Ema instance
+          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='topics/hot-reload'>
+            Hot Reload
           </a>
           
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
   
     <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div><p>Once you have <a href='guide/model' class='text-gray-600 font-bold hover:bg-gray-50'>model</a> and <a href='guide/routes' class='text-gray-600 font-bold hover:bg-gray-50'>route</a> types in place, we must tell the Haskell compiler that they are suitable for generating static sites. We do this by creating an instance of the <code>Ema</code> typeclass.</p></div>
+      <div><p>Finally, hot reload on <em>code</em> changes are supported via <a href='https://github.com/ndmitchell/ghcid' class='text-gray-600 hover:underline' target='_blank' rel='noopener'>ghcid</a>. The <a href='https://github.com/srid/ema-template' class='text-gray-600 hover:underline' target='_blank' rel='noopener'>template repo</a>'s `bin/run` script uses ghcid underneath. Any HTML DSL (like <code>blaze-html</code>) or CSS DSL automatically gets supported for hot-reload. If you choose to use a file-based HTML template language, you can enable hot-reload on template change using the <a href='topics/unionmount' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'><code>unionmount</code></a> library.</p></div>
     </div>
   
     <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div><p>Using some <code>MyModel</code> and the route <code>Route</code> shown in the <a href='guide/routes' class='text-gray-600 font-bold hover:bg-gray-50'>previous</a> section, we can create an instance as follows:</p></div>
+      <div><p>For anything outside of the Haskell code, your code becomes responsible for monitoring and updating the <a href='guide/model' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Model type</a> <a href='guide/model/dynamic' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Dynamic</a>. The <a href='topics/unionmount' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'><code>unionmount</code></a> library already provides utilities to facilitate this for monitoring changes to files and directories.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='guide/model/dynamic'>
+            Dynamic
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
+      <div><p>The use of a time-varying <code>Dynamic</code> is what enables <a href='topics/hot-reload' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Hot Reload</a>. See <a href='https://github.com/fpindia/fpindia-site/pull/24/files' class='text-gray-600 hover:underline' target='_blank' rel='noopener'>here</a> for an example of making a model time-varying. Checkout <a href='topics/unionmount' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'><code>unionmount</code></a> to produce a <code>Dynamic</code> of a model that updates based on the filesystem tree.</p></div>
     </div>
   
 </div>
@@ -996,7 +698,7 @@ newtype Tag = Tag Text</code></pre></div>
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 0.4.11.0'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 0.6.23.1'>
       <img class='w-6 h-6 hover:text-pink-700' src='_emanote-static/emanote-logo.svg' />
     </a>
   </div>

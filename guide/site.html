@@ -5,27 +5,25 @@
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <title>
-    Model type – Ema
+    EmaSite – Ema
   </title>
   
     
-      <meta property='og:description' content='A model, in an Ema app, represents all the data used to render the site. The model is also used (in ([[class]],[])), optionally, to encode the ([[route]],[Str "route",Space,Str "types"])route types.' />
+      <meta property='og:description' content='The EmaSite typeclass orchestrates and ties-together the whole site pipeline. The instance is written on the top-level site ([[route]],[]), which in turn enables using the Ema.runSite function to run the site from main entrypoint of your Haskell project.' />
       <meta property='og:site_name' content='Ema' />
       <meta property='og:image' content />
       <meta property='og:type' content='website' />
-      <meta property='og:title' content='Model type' />
+      <meta property='og:title' content='EmaSite' />
     
     
       <base href='/' />
       <link href='/favicon.svg' rel='icon' />
     
-    <link rel='manifest' href='/static/manifest.json' />
-<meta name='theme-color' content='#DB2777' />
-<!-- highlight.js -->
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/hybrid.min.css' />
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/haskell.min.js' integrity='sha512-byZkqR8FeRucjNQnEDNvbtUWMmtJqmNGfwXMRwjGgSbtgo7cvqGkYLdjgSO3ig11xUjKhdP7AhFXPvTTUpaGYQ==' crossorigin='anonymous' referrerpolicy='no-referrer'></script>
-<script>hljs.highlightAll();</script>
+    <!-- mermaid.js --><script src='https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js'></script>
+<script>
+  mermaid.initialize({startOnLoad:false});
+  mermaid.init(undefined,document.querySelectorAll(".mermaid"));
+</script>
 
   
   <link href='tailwind.css?instanceId=a1bc5deb-e44e-40a1-9c32-313942d1f368' rel='stylesheet' type='text/css' />
@@ -328,7 +326,9 @@
     
       <!-- Variable bindings for this tree-->
   
+    
   
+
 
 
   
@@ -340,52 +340,20 @@
   <div class='flex items-center my-2 space-x-2 justify-left'>
     
     
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-4 h-4 flex-shrink-0 inline text-gray-700' viewBox='0 0 20 20' fill='currentColor'>
-        <path fill-rule='evenodd' d='M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z' clip-rule='evenodd'></path>
-        <path d='M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z'></path>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-4 h-4 flex-shrink-0 inline text-gray-500' viewBox='0 0 20 20' fill='currentColor'>
+        <path d='M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z'></path>
       </svg>
-      
+    
   
-    <a class='font-bold text-pink-600 hover:underline truncate' title='Model type' href='guide/model'>
+    <a class='hover:underline truncate' title='Model type' href='guide/model'>
       Model type
     </a>
     
       
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-    
-      <!-- Variable bindings for this tree-->
-  
-    
-  
-
-
-
-  
-
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    
-    
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
-      </svg>
-    
-  
-    <a class='hover:underline truncate' title='Dynamic' href='guide/model/dynamic'>
-      Dynamic
-    </a>
-    
+        <span class='text-gray-300' title='1 children inside'>
+          1
+        </span>
       
-        
     
   </div>
 
@@ -395,14 +363,9 @@
   
 </div>
     
-  
-</div>
-    
       <!-- Variable bindings for this tree-->
   
-    
   
-
 
 
   
@@ -415,23 +378,23 @@
     
     
       <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'>
         </path>
       </svg>
-    
+      
   
-    <a class='hover:underline truncate' title='EmaSite' href='guide/site'>
+    <a class='font-bold text-pink-600 hover:underline truncate' title='EmaSite' href='guide/site'>
       EmaSite
     </a>
     
       
-        
-    
   </div>
 
   <!-- Node's children forest, displayed only on active trees
     TODO: Use <details> to toggle visibility?
   -->
+  
+    
   
 </div>
     
@@ -560,54 +523,50 @@
           <main class='px-4 py-4'>
             <h1 class='flex items-end justify-center mb-4 p-3 bg-pink-100 text-5xl font-extrabold text-black rounded'>
   <a class='z-40 tracking-tighter '>
-    Model type
+    EmaSite
   </a>
 </h1>
             <article class='overflow-auto'>
   <!-- What goes in this file will appear on top of note body-->
   
     <p class='mb-3'>
-      A “model”, in an Ema app, represents all the data used to render the site. The model is also used (in <a href='guide/route/class' class='text-pink-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'><code class='py-0.5 px-0.5 bg-gray-100'>IsRoute</code></a>), optionally, to encode the <a href='guide/route' class='text-pink-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>route types</a>.
+      The <code class='py-0.5 px-0.5 bg-gray-100'>EmaSite</code> typeclass “orchestrates” and ties-together the whole site pipeline. The instance is written on the top-level site <a href='guide/route' class='text-pink-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Route type</a>, which in turn enables using the <code class='py-0.5 px-0.5 bg-gray-100'>Ema.runSite</code> function to run the site from <code class='py-0.5 px-0.5 bg-gray-100'>main</code> entrypoint of your Haskell project.
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='mermaid language-mermaid'>%%{init: {'theme': 'forest', "flowchart" : { "curve" : "basis" } } }%%
+stateDiagram
+    direction LR
+    dynModel: Dynamic m Model
+    SiteArg --&gt; siteInput
+    siteInput --&gt; siteOutput : Model
+    state siteInput {
+      direction LR
+      dynModel
+    }
+    state siteOutput {
+      direction LR
+      SiteOutput
+    }
+    Route --&gt; siteOutput
+    siteOutput --&gt; Asset</code></pre></div><h2 id='sitearg' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'><code class='py-0.5 px-0.5 bg-gray-100'>SiteArg</code></h2>
+    <p class='mb-3'>
+      The <code class='py-0.5 px-0.5 bg-gray-100'>SiteArg</code> type specifies the options required to run the site. Typically these come from command line arguments and other environment. The value of this type is passed to the <code class='py-0.5 px-0.5 bg-gray-100'>siteInput</code> method of the <code class='py-0.5 px-0.5 bg-gray-100'>EmaSite</code> typeclass, as well as taken by the <code class='py-0.5 px-0.5 bg-gray-100'>Ema.runSite</code> function (which is called from <code class='py-0.5 px-0.5 bg-gray-100'>main</code>).
     </p>
   
     <p class='mb-3'>
-      Taking the blog site example from <a href='guide/route/example' class='text-pink-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Example route</a>, our model would look something like the following:
+      <code class='py-0.5 px-0.5 bg-gray-100'>SiteArg</code> is <code class='py-0.5 px-0.5 bg-gray-100'>()</code> by default (meaning, it is unused).
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='haskell language-haskell'>data Model = Model 
-  { modelSiteTitle :: Text 
-  , modelBlogPosts :: Map Slug (Date, Pandoc)
-  }</code></pre></div>
+  <h2 id='siteinput' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'><code class='py-0.5 px-0.5 bg-gray-100'>siteInput</code></h2>
     <p class='mb-3'>
-      The idea here is that in order to render our weblog, we only need a value of type <code class='py-0.5 px-0.5 bg-gray-100'>Model</code>, and we can render it without reading anything from the environment (doing IO).
+      The <code class='py-0.5 px-0.5 bg-gray-100'>siteInput</code> method takes a <code class='py-0.5 px-0.5 bg-gray-100'>SiteArg</code> value (and other relevant parameters) and returns a <a href='guide/model/dynamic' class='text-pink-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Dynamic</a> of the site’s <a href='guide/model' class='text-pink-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Model type</a>.
+    </p>
+  <h2 id='siteoutput' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'><code class='py-0.5 px-0.5 bg-gray-100'>siteOutput</code></h2>
+    <p class='mb-3'>
+      The <code class='py-0.5 px-0.5 bg-gray-100'>siteOutput</code> method takes the <a href='guide/model' class='text-pink-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Model type</a> value snapshot at that point in time, as well as the route value to render and returns a <a href='topics/asset' class='text-pink-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Asset</a> output (typically HTML bytestring) for it. <code class='py-0.5 px-0.5 bg-gray-100'>siteOutput</code> has IO capabilities; however, it typically is defined as a pure function (<code class='py-0.5 px-0.5 bg-gray-100'>siteOutput ... = pure &lt;expr&gt;</code>) inasmuch as all the data required to render the site is contained in the <a href='guide/model' class='text-pink-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Model type</a>.
     </p>
   
     <p class='mb-3'>
-      Models impact two places:
+      Note that this method may return a non-<code class='py-0.5 px-0.5 bg-gray-100'>Asset</code> type as well (as specified by <code class='py-0.5 px-0.5 bg-gray-100'>SiteOutput</code> type). This can be useful in sub-sites that are <a href='guide/compose' class='text-pink-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>composed</a> manually at the top-level.
     </p>
-  
-    <ul class='my-3 ml-6 space-y-1 list-decimal list-inside'>
-      
-        <li>
-          <code class='py-0.5 px-0.5 bg-gray-100'>RouteModel</code> of <a href='guide/route/class' class='text-pink-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'><code class='py-0.5 px-0.5 bg-gray-100'>IsRoute</code></a> associates a route type with a model type. This enables <a href='guide/route/prism' class='text-pink-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Route Prism</a> (and <code class='py-0.5 px-0.5 bg-gray-100'>routeUniverse</code>) to accept that model value as an argument.
-        </li>
-      
-        <li>
-          In <a href='guide/site' class='text-pink-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>EmaSite</a> typeclass, <code class='py-0.5 px-0.5 bg-gray-100'>siteInput</code> can now return this model value (and it can be time-varying if using a <a href='guide/model/dynamic' class='text-pink-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Dynamic</a>), as well as <code class='py-0.5 px-0.5 bg-gray-100'>siteOutput</code> can take the model value so as to render the site based on it.
-        </li>
-      
-    </ul>
-  <h2 id='useful-libraries' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Useful libraries</h2>
-    <ul class='my-3 ml-6 space-y-1 list-disc'>
-      
-        <li>
-          <a href='https://github.com/well-typed/ixset-typed' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>ixset-typed</a> - for database-like querying into in-memory model values
-        </li>
-      
-        <li>
-          <a href='topics/unionmount' class='text-pink-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'><code class='py-0.5 px-0.5 bg-gray-100'>unionmount</code></a> - mounting local files into Haskell in-memory model with change updates.
-        </li>
-      
-    </ul>
   
   <!-- What goes in this file will appear below the note body-->
 </article>
@@ -619,14 +578,14 @@
     <ul class='space-y-1'>
       
         <li>
-          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='topics/unionmount'>
-            <code>unionmount</code>
+          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='guide/model'>
+            Model type
           </a>
           
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
   
     <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div><p><a href='https://github.com/srid/unionmount' class='text-gray-600 hover:underline' target='_blank' rel='noopener'>unionmount</a> is a Haskell library that wraps <code>fsnotify</code> to provide a <a href='guide/model/dynamic' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Dynamic</a>-friendly API to listen on filesystem changes and update an in-memory <a href='guide/model' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Model type</a>. The library interface is such that you can “mount” multiple directories (<a href='https://en.wikipedia.org/wiki/Union_mount' class='text-gray-600 hover:underline' target='_blank' rel='noopener'>union</a>'ing them in the process), and have it update the model when files on any of those directories change.</p></div>
+      <div>In <a href='guide/site' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>EmaSite</a> typeclass, <code>siteInput</code> can now return this model value (and it can be time-varying if using a <a href='guide/model/dynamic' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Dynamic</a>), as well as <code>siteOutput</code> can take the model value so as to render the site based on it.</div>
     </div>
   
 </div>
@@ -634,44 +593,14 @@
         </li>
       
         <li>
-          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='topics/live-server'>
-            Live Server
+          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='topics/logging'>
+            Logging
           </a>
           
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
   
     <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div><p>The “run” command of <a href='topics/cli' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>CLI</a> runs the live-server, as opposed to the “gen” command which generates the static site one off. The live-server is a simple HTTP server that serves the Ema site “on the fly” (without doing O(n) static-site generation). Furthermore, changes to your <a href='guide/model' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Model type</a> (via <a href='guide/model/dynamic' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Dynamic</a>) will automatically <a href='topics/hot-reload' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Hot Reload</a> the browser clients to display the new HTML as rendered using the new model value.</p></div>
-    </div>
-  
-</div>
-          
-        </li>
-      
-        <li>
-          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='guide/route/class'>
-            <code>IsRoute</code>
-          </a>
-          
-            <div class='mb-4 overflow-auto text-sm text-gray-500'>
-  
-    <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div><code>RouteModel</code> is (optionally) used to specify the <a href='guide/model' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>value</a> that is used for encoding routes (as defined by <code>routePrism</code>).</div>
-    </div>
-  
-</div>
-          
-        </li>
-      
-        <li>
-          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='topics/hot-reload'>
-            Hot Reload
-          </a>
-          
-            <div class='mb-4 overflow-auto text-sm text-gray-500'>
-  
-    <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div><p>For anything outside of the Haskell code, your code becomes responsible for monitoring and updating the <a href='guide/model' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Model type</a> <a href='guide/model/dynamic' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Dynamic</a>. The <a href='topics/unionmount' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'><code>unionmount</code></a> library already provides utilities to facilitate this for monitoring changes to files and directories.</p></div>
+      <div><p>The methods of <a href='guide/site' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>EmaSite</a> support the <code>MonadLoggerIO</code> constraint, as defined by <a href='https://hackage.haskell.org/package/monad-logger' class='text-gray-600 hover:underline' target='_blank' rel='noopener'>monad-logger</a>. This means that you can use any of the logging functions from <code>monad-logger</code> to add logging to your application. <a href='https://hackage.haskell.org/package/monad-logger-extras' class='text-gray-600 hover:underline' target='_blank' rel='noopener'>monad-logger-extras</a> is used to colorize the logs.</p></div>
     </div>
   
 </div>
@@ -686,11 +615,7 @@
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
   
     <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div>The <code>EmaSite</code> typeclass defines the “site pipeline” – the input <a href='guide/model' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Model type</a> and the output <a href='topics/asset' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Asset</a>:</div>
-    </div>
-  
-    <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div><code>siteInput</code> returns the <a href='guide/model' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>model</a> used in rendering the routes. In <a href='tutorial/02-model' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Add a Model</a> we will use a custom model, and in <a href='tutorial/03-dynamic' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Dynamic Model</a> we will make it time-varying.</div>
+      <div>an <a href='guide/site' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>EmaSite</a> instance on that route type defining the site render pipeline.</div>
     </div>
   
 </div>
@@ -705,26 +630,7 @@
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
   
     <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div><a href='guide/model' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Model type</a> and <a href='guide/model/dynamic' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Dynamic</a></div>
-    </div>
-  
-</div>
-          
-        </li>
-      
-        <li>
-          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='guide/site'>
-            EmaSite
-          </a>
-          
-            <div class='mb-4 overflow-auto text-sm text-gray-500'>
-  
-    <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div><p>The <code>siteInput</code> method takes a <code>SiteArg</code> value (and other relevant parameters) and returns a <a href='guide/model/dynamic' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Dynamic</a> of the site’s <a href='guide/model' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Model type</a>.</p></div>
-    </div>
-  
-    <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div><p>The <code>siteOutput</code> method takes the <a href='guide/model' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Model type</a> value snapshot at that point in time, as well as the route value to render and returns a <a href='topics/asset' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Asset</a> output (typically HTML bytestring) for it. <code>siteOutput</code> has IO capabilities; however, it typically is defined as a pure function (<code>siteOutput ... = pure &lt;expr&gt;</code>) inasmuch as all the data required to render the site is contained in the <a href='guide/model' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Model type</a>.</p></div>
+      <div><a href='guide/site' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>EmaSite</a></div>
     </div>
   
 </div>
@@ -754,7 +660,7 @@
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
   
     <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div><p><code>Ema.Route.Lib.Extra.StaticRoute</code> provides a <code>StaticRoute</code> site that can monitor a directory and allow referring to the files in it. The <a href='guide/model' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Model type</a> for this sub-route keeps track of last-added time, which gets appended to the URL when running in <a href='topics/live-server' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Live Server</a>, which in turn has the effect of “refreshing” the target content (eg: image) when the underlying files change.</p></div>
+      <div><p><code>Ema.Route.Lib.Extra.PandocRoute</code> provides a <code>PandocRoute</code> site that can monitor a directory of LML files (Markdown, org-mode, etc.) and return (in <code>siteOutput</code> of <a href='guide/site' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>EmaSite</a>) the parsed Pandoc AST along with a function that renders it to HTML.</p></div>
     </div>
   
 </div>
@@ -762,14 +668,14 @@
         </li>
       
         <li>
-          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='tutorial/02-model'>
-            Add a Model
+          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='topics/cli'>
+            CLI
           </a>
           
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
   
     <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div><p>To generate our mood tracker view, we need … mood data, i.e., the mood <a href='guide/model' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Model type</a>. If we are recording our mood each day, then Haskell’s <code>Map</code> type is one way to represent moods over time.</p></div>
+      <div><p>The subcommand is passed as the <code>Ema.CLI.Action</code> type to your <code>siteInput</code> function in <a href='guide/site' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>EmaSite</a>.</p></div>
     </div>
   
 </div>
@@ -777,18 +683,14 @@
         </li>
       
         <li>
-          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='tutorial/01-routes'>
-            Add Routes
+          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='topics/asset'>
+            Asset
           </a>
           
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
   
     <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div>We don’t need any special <a href='guide/model' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Model type</a> to encode a <code>Day</code> route, thus <code>RouteModel</code> is a unit. But we’ll modify this in next step (to implement <code>routeUniverse</code>).</div>
-    </div>
-  
-    <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div><code>RouteModel</code>: associate a value type (<a href='guide/model' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Model type</a>) that will be used for encoding and decoding routes (see next point)</div>
+      <div><p>An “asset” is simply a <code>ByteString</code> (written to disk) or <code>FilePath</code> (copied) that <code>siteOutput</code> of <a href='guide/site' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>EmaSite</a> typically produces. It is defined as:</p></div>
     </div>
   
 </div>

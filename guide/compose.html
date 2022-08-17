@@ -1,17 +1,19 @@
+<!DOCTYPE html>
 <html lang='en'>
 
 <head>
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <title>
-    Logging – Ema
+    Composing Ema apps – Ema
   </title>
   
     
-      <meta property='og:description' content />
+      <meta property='og:description' content='Smaller Ema apps can be composed together to create a larger app.' />
       <meta property='og:site_name' content='Ema' />
+      <meta property='og:image' content />
       <meta property='og:type' content='website' />
-      <meta property='og:title' content='Logging' />
+      <meta property='og:title' content='Composing Ema apps' />
     
     
       <base href='/' />
@@ -19,15 +21,17 @@
     
     <link rel='manifest' href='/static/manifest.json' />
 <meta name='theme-color' content='#DB2777' />
-<!-- Syntax highlighting -->
-<link href='https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-tomorrow.css' rel='stylesheet' />
-<script src='https://cdn.jsdelivr.net/combine/npm/prismjs@1.23.0/prism.min.js,npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js'></script>
+<!-- highlight.js -->
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/hybrid.min.css' />
+<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/haskell.min.js' integrity='sha512-byZkqR8FeRucjNQnEDNvbtUWMmtJqmNGfwXMRwjGgSbtgo7cvqGkYLdjgSO3ig11xUjKhdP7AhFXPvTTUpaGYQ==' crossorigin='anonymous' referrerpolicy='no-referrer'></script>
+<script>hljs.highlightAll();</script>
 
   
-  <link href='tailwind.css?instanceId=3b2c7111-0acc-45e3-a15d-15d390765e48' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=a1bc5deb-e44e-40a1-9c32-313942d1f368' rel='stylesheet' type='text/css' />
 
   <!-- Heist error element -->
-  <style type='text/css'>
+  <style>
     strong.error {
       color: lightcoral;
       font-size: 90%;
@@ -39,7 +43,8 @@
 <style>
   @font-face {
     font-family: 'MavenPro';
-    src: url('_emanote-static/fonts/Maven_Pro/MavenPro-VariableFont_wght.ttf') format("truetype");
+    /* FIXME: This ought to be: ${ema:emanoteStaticLayerUrl}/fonts/Maven_Pro/MavenPro-VariableFont_wght.ttf */
+    src: url(_emanote-static/fonts/Maven_Pro/MavenPro-VariableFont_wght.ttf) format("truetype");
     font-display: swap;
   }
 
@@ -68,7 +73,7 @@
   }
 </style>
 
-  <head-main></head-main>
+  
 </head>
 
 <!-- DoNotFormat -->
@@ -104,8 +109,8 @@
             </li>
           
             <li class='inline-flex items-center'>
-              <a class='px-1 font-bold' href='concepts'>
-                Concepts
+              <a class='px-1 font-bold' href='guide'>
+                Guide
               </a>
               <svg fill='currentColor' viewBox='0 0 20 20' class='w-auto h-5 text-gray-400'>
                 <path fill-rule='evenodd' d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z' clip-rule='evenodd'></path>
@@ -171,9 +176,7 @@
               <!-- Variable bindings for this tree-->
   
     
-      
-      
-    
+  
 
 
 
@@ -186,35 +189,38 @@
   <div class='flex items-center my-2 space-x-2 justify-left'>
     
     
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-4 h-4 flex-shrink-0 inline text-gray-700' viewBox='0 0 20 20' fill='currentColor'>
-        <path fill-rule='evenodd' d='M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z' clip-rule='evenodd'></path>
-        <path d='M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z'></path>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-4 h-4 flex-shrink-0 inline text-gray-500' viewBox='0 0 20 20' fill='currentColor'>
+        <path d='M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z'></path>
       </svg>
-      
+    
   
-    <a class='font-bold hover:underline truncate' title='Getting Started' href='start'>
+    <a class='hover:underline truncate' title='Getting Started' href='start'>
       Getting Started
     </a>
     
       
+        <span class='text-gray-300' title='1 children inside'>
+          1
+        </span>
+      
+    
   </div>
 
   <!-- Node's children forest, displayed only on active trees
     TODO: Use <details> to toggle visibility?
   -->
   
-    
-      <!-- Variable bindings for this tree-->
+</div>
+            
+              <!-- Variable bindings for this tree-->
   
     
-      
-    
-    
+  
 
 
 
   
-
+  
 
 <!-- Rendering of this tree -->
 <div class='pl-2'>
@@ -222,27 +228,26 @@
   <div class='flex items-center my-2 space-x-2 justify-left'>
     
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-4 h-4 flex-shrink-0 inline text-gray-500' viewBox='0 0 20 20' fill='currentColor'>
+        <path d='M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z'></path>
       </svg>
     
   
-    <a class='hover:underline truncate' title='Tutorial' href='start/tutorial'>
+    <a class='hover:underline truncate' title='Tutorial' href='tutorial'>
       Tutorial
     </a>
     
       
+        <span class='text-gray-300' title='4 children inside'>
+          4
+        </span>
+      
+    
   </div>
 
   <!-- Node's children forest, displayed only on active trees
     TODO: Use <details> to toggle visibility?
   -->
-  
-    
-  
-</div>
-    
   
 </div>
             
@@ -285,14 +290,12 @@
       <!-- Variable bindings for this tree-->
   
     
-      
-    
-    
+  
 
 
 
   
-
+  
 
 <!-- Rendering of this tree -->
 <div class='pl-2'>
@@ -300,38 +303,38 @@
   <div class='flex items-center my-2 space-x-2 justify-left'>
     
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-4 h-4 flex-shrink-0 inline text-gray-500' viewBox='0 0 20 20' fill='currentColor'>
+        <path d='M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z'></path>
       </svg>
     
   
-    <a class='hover:underline truncate' title='Defining your model' href='guide/model'>
-      Defining your model
+    <a class='hover:underline truncate' title='Route type' href='guide/route'>
+      Route type
     </a>
     
       
+        <span class='text-gray-300' title='4 children inside'>
+          4
+        </span>
+      
+    
   </div>
 
   <!-- Node's children forest, displayed only on active trees
     TODO: Use <details> to toggle visibility?
   -->
-  
-    
   
 </div>
     
       <!-- Variable bindings for this tree-->
   
     
-      
-    
-    
+  
 
 
 
   
-
+  
 
 <!-- Rendering of this tree -->
 <div class='pl-2'>
@@ -339,33 +342,33 @@
   <div class='flex items-center my-2 space-x-2 justify-left'>
     
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-4 h-4 flex-shrink-0 inline text-gray-500' viewBox='0 0 20 20' fill='currentColor'>
+        <path d='M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z'></path>
       </svg>
     
   
-    <a class='hover:underline truncate' title='Working with routes' href='guide/routes'>
-      Working with routes
+    <a class='hover:underline truncate' title='Model type' href='guide/model'>
+      Model type
     </a>
     
       
+        <span class='text-gray-300' title='1 children inside'>
+          1
+        </span>
+      
+    
   </div>
 
   <!-- Node's children forest, displayed only on active trees
     TODO: Use <details> to toggle visibility?
   -->
-  
-    
   
 </div>
     
       <!-- Variable bindings for this tree-->
   
     
-      
-    
-    
+  
 
 
 
@@ -384,369 +387,18 @@
       </svg>
     
   
-    <a class='hover:underline truncate' title='Defining Ema instance' href='guide/class'>
-      Defining Ema instance
+    <a class='hover:underline truncate' title='EmaSite' href='guide/site'>
+      EmaSite
     </a>
     
       
+        
+    
   </div>
 
   <!-- Node's children forest, displayed only on active trees
     TODO: Use <details> to toggle visibility?
   -->
-  
-    
-  
-</div>
-    
-      <!-- Variable bindings for this tree-->
-  
-    
-      
-    
-    
-
-
-
-  
-
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    
-    
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
-      </svg>
-    
-  
-    <a class='hover:underline truncate' title='Rendering HTML' href='guide/render'>
-      Rendering HTML
-    </a>
-    
-      
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-    
-  
-</div>
-    
-  
-</div>
-            
-              <!-- Variable bindings for this tree-->
-  
-    
-      
-      
-    
-
-
-
-  
-  
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    
-    
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-4 h-4 flex-shrink-0 inline text-gray-700' viewBox='0 0 20 20' fill='currentColor'>
-        <path fill-rule='evenodd' d='M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z' clip-rule='evenodd'></path>
-        <path d='M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z'></path>
-      </svg>
-      
-  
-    <a class='font-bold hover:underline truncate' title='Howto' href='howto'>
-      Howto
-    </a>
-    
-      
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-    
-      <!-- Variable bindings for this tree-->
-  
-    
-      
-    
-    
-
-
-
-  
-
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    
-    
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
-      </svg>
-    
-  
-    <a class='hover:underline truncate' title='Working with files' href='howto/filesystem'>
-      Working with files
-    </a>
-    
-      
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-    
-  
-</div>
-    
-      <!-- Variable bindings for this tree-->
-  
-    
-      
-    
-    
-
-
-
-  
-
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    
-    
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
-      </svg>
-    
-  
-    <a class='hover:underline truncate' title='Using Markdown' href='howto/markdown'>
-      Using Markdown
-    </a>
-    
-      
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-    
-  
-</div>
-    
-  
-</div>
-            
-              <!-- Variable bindings for this tree-->
-  
-    
-      
-      
-    
-
-
-
-  
-  
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    
-    
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-4 h-4 flex-shrink-0 inline text-gray-700' viewBox='0 0 20 20' fill='currentColor'>
-        <path fill-rule='evenodd' d='M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z' clip-rule='evenodd'></path>
-        <path d='M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z'></path>
-      </svg>
-      
-  
-    <a class='font-bold hover:underline truncate' title='Concepts' href='concepts'>
-      Concepts
-    </a>
-    
-      
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-    
-      <!-- Variable bindings for this tree-->
-  
-    
-      
-    
-    
-
-
-
-  
-
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    
-    
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
-      </svg>
-    
-  
-    <a class='hover:underline truncate' title='Hot Reload' href='concepts/hot-reload'>
-      Hot Reload
-    </a>
-    
-      
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-    
-  
-</div>
-    
-      <!-- Variable bindings for this tree-->
-  
-    
-      
-    
-    
-
-
-
-  
-
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    
-    
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
-      </svg>
-    
-  
-    <a class='hover:underline truncate' title='LVar' href='concepts/lvar'>
-      LVar
-    </a>
-    
-      
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-    
-  
-</div>
-    
-      <!-- Variable bindings for this tree-->
-  
-    
-      
-    
-    
-
-
-
-  
-
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    
-    
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
-      </svg>
-    
-  
-    <a class='hover:underline truncate' title='Slug' href='concepts/slug'>
-      Slug
-    </a>
-    
-      
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-    
-  
-</div>
-    
-      <!-- Variable bindings for this tree-->
-  
-    
-      
-    
-    
-
-
-
-  
-
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    
-    
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
-      </svg>
-    
-  
-    <a class='hover:underline truncate' title='CLI' href='concepts/cli'>
-      CLI
-    </a>
-    
-      
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-    
   
 </div>
     
@@ -770,8 +422,8 @@
       </svg>
       
   
-    <a class='font-bold text-pink-600 hover:underline truncate' title='Logging' href='concepts/logging'>
-      Logging
+    <a class='font-bold text-pink-600 hover:underline truncate' title='Composing Ema apps' href='guide/compose'>
+      Composing Ema apps
     </a>
     
       
@@ -791,9 +443,46 @@
               <!-- Variable bindings for this tree-->
   
     
+  
+
+
+
+  
+  
+
+<!-- Rendering of this tree -->
+<div class='pl-2'>
+  <!-- Node's rootLabel-->
+  <div class='flex items-center my-2 space-x-2 justify-left'>
+    
+    
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-4 h-4 flex-shrink-0 inline text-gray-500' viewBox='0 0 20 20' fill='currentColor'>
+        <path d='M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z'></path>
+      </svg>
+    
+  
+    <a class='hover:underline truncate' title='Topics' href='topics'>
+      Topics
+    </a>
+    
+      
+        <span class='text-gray-300' title='6 children inside'>
+          6
+        </span>
       
     
+  </div>
+
+  <!-- Node's children forest, displayed only on active trees
+    TODO: Use <details> to toggle visibility?
+  -->
+  
+</div>
+            
+              <!-- Variable bindings for this tree-->
+  
     
+  
 
 
 
@@ -812,18 +501,18 @@
       </svg>
     
   
-    <a class='hover:underline truncate' title='💻 Showcase' href='showcase'>
-      💻 Showcase
+    <a class='hover:underline truncate' title='💻 Examples' href='examples'>
+      💻 Examples
     </a>
     
       
+        
+    
   </div>
 
   <!-- Node's children forest, displayed only on active trees
     TODO: Use <details> to toggle visibility?
   -->
-  
-    
   
 </div>
             
@@ -836,17 +525,40 @@
           <main class='px-4 py-4'>
             <h1 class='flex items-end justify-center mb-4 p-3 bg-pink-100 text-5xl font-extrabold text-black rounded'>
   <a class='z-40 tracking-tighter '>
-    Logging
+    Composing Ema apps
   </a>
 </h1>
             <article class='overflow-auto'>
   <!-- What goes in this file will appear on top of note body-->
   
     <p class='mb-3'>
-      <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>runEma</code>’s action monad supports the <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>MonadLoggerIO</code> constraint, as defined by <a href='https://hackage.haskell.org/package/monad-logger' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>monad-logger</a>. This means that you can use any of the logging functions from <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>monad-logger</code> to add logging to your application. <a href='https://hackage.haskell.org/package/monad-logger-extras' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>monad-logger-extras</a> is used to colorize the logs.
+      Smaller Ema apps can be composed together to create a larger app.
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='haskell language-haskell'>logInfoNS "myapp" "This is an info message"
-logDebugNS "myapp" "This is a debug message info"</code></pre></div>
+  
+    <p class='mb-3'>
+      See <code class='py-0.5 px-0.5 bg-gray-100'>Ex04_Multi.hs</code> in the Ema source tree for an example of this based on a top-level route ADT. The <code class='py-0.5 px-0.5 bg-gray-100'>Ex05_MultiRoute.hs</code> example is similar but uses a heterogenous list (<code class='py-0.5 px-0.5 bg-gray-100'>NS</code> from sop-core) instead of defining a new route ADT. The former has the main advantage of being able to use inner apps’ models in defining the behaviour of other routes.
+    </p>
+  <h2 id='builtin-sub-apps' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Builtin sub-apps</h2>
+    <p class='mb-3'>
+      Ema provides a few “sub apps” that are useful in developing static sites.
+    </p>
+  <h3 id='staticroute' class='mt-6 mb-2 text-3xl font-bold text-gray-700'><code class='py-0.5 px-0.5 bg-gray-100'>StaticRoute</code></h3>
+    <p class='mb-3'>
+      <code class='py-0.5 px-0.5 bg-gray-100'>Ema.Route.Lib.Extra.StaticRoute</code> provides a <code class='py-0.5 px-0.5 bg-gray-100'>StaticRoute</code> site that can monitor a directory and allow referring to the files in it. The <a href='guide/model' class='text-pink-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Model type</a> for this sub-route keeps track of last-added time, which gets appended to the URL when running in <a href='topics/live-server' class='text-pink-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Live Server</a>, which in turn has the effect of “refreshing” the target content (eg: image) when the underlying files change.
+    </p>
+  
+    <p class='mb-3'>
+      An example of its use can be seen here: <a href='https://github.com/EmaApps/ema-template' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>https://github.com/EmaApps/ema-template</a>
+    </p>
+  <h3 id='pandocroute' class='mt-6 mb-2 text-3xl font-bold text-gray-700'><code class='py-0.5 px-0.5 bg-gray-100'>PandocRoute</code></h3>
+    <p class='mb-3'>
+      <code class='py-0.5 px-0.5 bg-gray-100'>Ema.Route.Lib.Extra.PandocRoute</code> provides a <code class='py-0.5 px-0.5 bg-gray-100'>PandocRoute</code> site that can monitor a directory of LML files (Markdown, org-mode, etc.) and return (in <code class='py-0.5 px-0.5 bg-gray-100'>siteOutput</code> of <a href='guide/site' class='text-pink-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>EmaSite</a>) the parsed Pandoc AST along with a function that renders it to HTML.
+    </p>
+  
+    <p class='mb-3'>
+      An example of its use can be seen here: <a href='https://github.com/fpindia/fpindia-site/pull/21' class='text-pink-600 hover:underline' target='_blank' rel='noopener'>https://github.com/fpindia/fpindia-site/pull/21</a>
+    </p>
+  
   <!-- What goes in this file will appear below the note body-->
 </article>
             <div class='flex flex-col lg:flex-row lg:space-x-2'>
@@ -857,14 +569,29 @@ logDebugNS "myapp" "This is a debug message info"</code></pre></div>
     <ul class='space-y-1'>
       
         <li>
-          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='concepts'>
-            Concepts
+          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='guide'>
+            Guide
           </a>
           
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
   
     <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
-      <div><a href='concepts/logging' class='text-gray-600 font-bold hover:bg-gray-50'>Logging</a></div>
+      <div>Optionally, <a href='guide/compose' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>compose multiple apps</a></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-pink-600 mavenLinkBold hover:bg-pink-50' href='guide/site'>
+            EmaSite
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-pink-200 hover:border-pink-500'>
+      <div><p>Note that this method may return a non-<code>Asset</code> type as well (as specified by <code>SiteOutput</code> type). This can be useful in sub-sites that are <a href='guide/compose' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>composed</a> manually at the top-level.</p></div>
     </div>
   
 </div>
@@ -902,7 +629,7 @@ logDebugNS "myapp" "This is a debug message info"</code></pre></div>
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 0.4.11.0'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 0.6.23.1'>
       <img class='w-6 h-6 hover:text-pink-700' src='_emanote-static/emanote-logo.svg' />
     </a>
   </div>
