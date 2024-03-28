@@ -7,8 +7,6 @@ module Ema.App (
   runSiteWith,
 ) where
 
-import Control.Concurrent (threadDelay)
-import Control.Concurrent.Async (race_)
 import Control.Monad.Logger (LoggingT (runLoggingT), MonadLoggerIO (askLoggerIO), logInfoNS, logWarnNS)
 import Control.Monad.Logger.Extras (runLoggerLoggingT)
 import Data.Default (Default, def)
@@ -21,6 +19,7 @@ import Ema.Route.Class (IsRoute (RouteModel))
 import Ema.Server qualified as Server
 import Ema.Site (EmaSite (SiteArg, siteInput), EmaStaticSite)
 import System.Directory (getCurrentDirectory)
+import UnliftIO.Async (concurrently_)
 
 data SiteConfig r = SiteConfig
   { siteConfigCli :: CLI.Cli
@@ -86,20 +85,11 @@ runSiteWith cfg siteArg = do
         fs <- generateSiteFromModel @r dest model0
         pure (model0, (dest, fs))
       CLI.Run (host, mport, CLI.unNoWebSocket -> noWebSocket) -> do
-        model <- LVar.empty
-        LVar.set model model0
-        logger <- askLoggerIO
+        model <- LVar.new model0
         let mWsOpts = if noWebSocket then Nothing else Just opts
-        liftIO $
-          race_
-            ( flip runLoggingT logger $ do
-                cont $ LVar.set model
-                logWarnNS "ema" "modelPatcher exited; no more model updates!"
-                -- We want to keep this thread alive, so that the server thread
-                -- doesn't exit.
-                liftIO $ threadDelay maxBound
-            )
-            ( flip runLoggingT logger $ do
-                Server.runServerWithWebSocketHotReload @r mWsOpts host mport model
-            )
+        concurrently_
+          ( cont (LVar.set model)
+              >> logWarning "modelPatcher exited; no more model updates!"
+          )
+          (Server.runServerWithWebSocketHotReload @r mWsOpts host mport model)
         CLI.crash "ema" "Live server unexpectedly stopped"
