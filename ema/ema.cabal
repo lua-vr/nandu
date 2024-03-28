@@ -87,8 +87,7 @@ library
     , filepattern
     , http-types
     , lvar
-    , monad-logger
-    , monad-logger-extras
+    , co-log
     , mtl
     , neat-interpolation
     , optics-core

@@ -5,13 +5,13 @@ module Ema.Site (
   EmaStaticSite,
 ) where
 
-import Control.Monad.Logger (MonadLoggerIO)
 import Ema.Asset (Asset)
 import Ema.CLI qualified as CLI
 import Ema.Dynamic (Dynamic)
 import Ema.Route.Class (IsRoute (RouteModel))
 import Optics.Core (Prism')
 import UnliftIO (MonadUnliftIO)
+import Colog (WithLog, Message)
 
 {- | Typeclass to orchestrate an Ema site
 
@@ -51,8 +51,8 @@ class (IsRoute r) => EmaSite r where
   --
   --    If your model is not time-varying, use `pure` to produce a constant value.
   siteInput ::
-    forall m.
-    (MonadIO m, MonadUnliftIO m, MonadLoggerIO m) =>
+    forall m env.
+    (MonadUnliftIO m, WithLog env Message m) =>
     CLI.Action ->
     -- | The value passed by the programmer to `Ema.App.runSite`
     SiteArg r ->
@@ -62,8 +62,8 @@ class (IsRoute r) => EmaSite r where
 
   -- | Return the output (typically an `Asset`) for the given route and model.
   siteOutput ::
-    forall m.
-    (MonadIO m, MonadLoggerIO m) =>
+    forall m env.
+    (MonadUnliftIO m, WithLog env Message m) =>
     Prism' FilePath r ->
     RouteModel r ->
     r ->

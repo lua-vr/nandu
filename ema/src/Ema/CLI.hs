@@ -3,15 +3,28 @@
 
 module Ema.CLI where
 
-import Control.Monad.Logger (LogLevel (LevelDebug, LevelInfo), LogSource, MonadLoggerIO, logErrorNS)
-import Control.Monad.Logger.Extras (
-  Logger (Logger),
-  colorize,
-  logToStdout,
- )
+import Colog (LogAction, LoggerT, Message, Msg (..), Severity (..), WithLog, filterBySeverity, logError, richMessageAction, usingLoggerT)
 import Data.Default (Default (def))
 import Network.Wai.Handler.Warp (Port)
 import Options.Applicative hiding (action)
+import UnliftIO (MonadUnliftIO)
+
+newtype AppM a = AppM (LoggerT Message IO a)
+  deriving newtype
+    ( Functor
+    , Applicative
+    , MonadFail
+    , Monad
+    , MonadIO
+    , MonadUnliftIO
+    )
+
+usingAppM :: LogAction IO Message -> AppM a -> IO a
+usingAppM logger (AppM m) = usingLoggerT logger m
+
+instance MonadReader (LogAction AppM Message) AppM where
+  ask = coerce <$> AppM ask
+  local f (AppM x) = AppM (local (coerce f) x)
 
 -- | Host string to start the server on.
 newtype Host = Host {unHost :: Text}
@@ -97,23 +110,19 @@ cliAction = do
             <> header "Ema"
         )
 
-getLogger :: Cli -> Logger
+getLogger :: Cli -> LogAction IO Message
 getLogger cli =
-  logToStdout
-    & colorize
-    & allowLogLevelFrom (bool LevelInfo LevelDebug $ verbose cli)
+  richMessageAction
+    & allowLogLevelFrom (bool Info Debug $ verbose cli)
   where
-    allowLogLevelFrom :: LogLevel -> Logger -> Logger
-    allowLogLevelFrom minLevel (Logger f) = Logger $ \loc src level msg ->
-      if level >= minLevel
-        then f loc src level msg
-        else pass
+    allowLogLevelFrom :: Severity -> LogAction IO Message -> LogAction IO Message
+    allowLogLevelFrom minLevel = filterBySeverity minLevel msgSeverity
 
 {- | Crash the program with the given error message
 
  First log the message using Error level, and then exit using `fail`.
 -}
-crash :: (MonadLoggerIO m, MonadFail m) => LogSource -> Text -> m a
-crash source msg = do
-  logErrorNS source msg
+crash :: (WithLog env Message m, MonadFail m) => Text -> m a
+crash msg = do
+  logError msg
   fail $ toString msg

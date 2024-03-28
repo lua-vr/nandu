@@ -7,11 +7,10 @@ module Ema.App (
   runSiteWith,
 ) where
 
-import Control.Monad.Logger (LoggingT (runLoggingT), MonadLoggerIO (askLoggerIO), logInfoNS, logWarnNS)
-import Control.Monad.Logger.Extras (runLoggerLoggingT)
+import Colog (logInfo, logWarning)
 import Data.Default (Default, def)
 import Data.LVar qualified as LVar
-import Ema.CLI (getLogger)
+import Ema.CLI (getLogger, usingAppM)
 import Ema.CLI qualified as CLI
 import Ema.Dynamic (Dynamic (Dynamic))
 import Ema.Generate (generateSiteFromModel)
@@ -76,9 +75,9 @@ runSiteWith ::
 runSiteWith cfg siteArg = do
   let opts = siteConfigWebSocketOptions cfg
       cli = siteConfigCli cfg
-  flip runLoggerLoggingT (getLogger cli) $ do
+  usingAppM (getLogger cli) $ do
     cwd <- liftIO getCurrentDirectory
-    logInfoNS "ema" $ "Launching Ema under: " <> toText cwd
+    logInfo $ "Launching Ema under: " <> toText cwd
     Dynamic (model0 :: RouteModel r, cont) <- siteInput @r (CLI.action cli) siteArg
     case CLI.action cli of
       CLI.Generate dest -> do
@@ -92,4 +91,4 @@ runSiteWith cfg siteArg = do
               >> logWarning "modelPatcher exited; no more model updates!"
           )
           (Server.runServerWithWebSocketHotReload @r mWsOpts host mport model)
-        CLI.crash "ema" "Live server unexpectedly stopped"
+        CLI.crash "Live server unexpectedly stopped"

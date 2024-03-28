@@ -2,15 +2,15 @@
 
 module Ema.Server.HTTP where
 
-import Control.Monad.Logger
+import Colog (logDebug, logError)
 import Data.LVar (LVar)
 import Data.LVar qualified as LVar
-import Data.Maybe (fromMaybe)
 import Data.Text qualified as T
 import Ema.Asset (
   Asset (AssetGenerated, AssetStatic),
   Format (Html, Other),
  )
+import Ema.CLI (AppM)
 import Ema.Route.Class (IsRoute (RouteModel, routePrism))
 import Ema.Route.Prism (
   fromPrism_,
@@ -25,21 +25,22 @@ import Optics.Core (review)
 httpApp ::
   forall r.
   (Eq r, Show r, IsRoute r, EmaStaticSite r) =>
-  (Loc -> LogSource -> LogLevel -> LogStr -> IO ()) ->
   LVar (RouteModel r) ->
   -- The shim to include in every HTML response
   Maybe LByteString ->
-  Wai.Application
-httpApp logger model mShim req f = flip runLoggingT logger $ do
+  Wai.Request ->
+  (Wai.Response -> IO Wai.ResponseReceived) ->
+  AppM Wai.ResponseReceived
+httpApp model mShim req f = do
   let shim = fromMaybe "" mShim
   val <- LVar.get model
   let pathInfo = Wai.pathInfo req
       path = T.intercalate "/" pathInfo
       mr = decodeUrlRoute @r val path
-  logInfoNS "ema.http" $ "GET " <> path <> " as " <> show mr
+  logDebug $ "GET " <> path <> " as " <> show mr
   case mr of
     Left err -> do
-      logErrorNS "App" $ badRouteEncodingMsg err
+      logError $ badRouteEncodingMsg err
       let s = emaErrorHtmlResponse (badRouteEncodingMsg err) <> shim
       liftIO $ f $ Wai.responseLBS H.status500 [(H.hContentType, "text/html")] s
     Right Nothing -> do

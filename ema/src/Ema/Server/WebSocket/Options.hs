@@ -2,12 +2,9 @@
 
 module Ema.Server.WebSocket.Options where
 
-import Control.Monad.Logger (
-  LogLevel (LevelDebug),
-  LoggingT,
-  logWithoutLoc,
- )
+import Colog (logDebug)
 import Data.Default (Default (def))
+import Ema.CLI (AppM)
 import Ema.Route.Class (IsRoute (RouteModel))
 import Ema.Server.Common (wsClientJSShim)
 import NeatInterpolation (text)
@@ -25,16 +22,14 @@ import Network.WebSockets qualified as WS
   stopped and then restarted with the new model as argument.
 -}
 newtype EmaWsHandler r = EmaWsHandler
-  { unEmaWsHandler :: WS.Connection -> RouteModel r -> LoggingT IO Text
+  { unEmaWsHandler :: (HasCallStack) => WS.Connection -> RouteModel r -> AppM Text
   }
 
 instance Default (EmaWsHandler r) where
   def = EmaWsHandler $ \conn _model -> do
     msg :: Text <- liftIO $ WS.receiveData conn
-    log LevelDebug $ "<~~ " <> show msg
+    logDebug $ "<~~ " <> show msg
     pure msg
-    where
-      log lvl (t :: Text) = logWithoutLoc "ema.ws" lvl t
 
 data EmaWebSocketOptions r = EmaWebSocketOptions
   { emaWebSocketClientShim :: LByteString

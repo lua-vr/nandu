@@ -4,13 +4,14 @@
 
 module Ema.Server.Common where
 
-import Control.Monad.Logger
+import Colog (logError)
 import Data.FileEmbed
 import Data.Text qualified as T
 import Ema.Asset (
   Asset (AssetGenerated),
   Format (Html),
  )
+import Ema.CLI (AppM)
 import Ema.Route.Class (IsRoute (RouteModel, routePrism))
 import Ema.Route.Prism (
   checkRoutePrismGivenFilePath,
@@ -18,22 +19,19 @@ import Ema.Route.Prism (
  )
 import Ema.Route.Url (urlToFilePath)
 import Ema.Site (EmaSite (siteOutput), EmaStaticSite)
-import UnliftIO (MonadUnliftIO)
 import UnliftIO.Exception (catch)
 
 renderCatchingErrors ::
-  forall r m.
-  ( MonadLoggerIO m
-  , MonadUnliftIO m
-  , EmaStaticSite r
+  forall r.
+  ( EmaStaticSite r
   ) =>
   RouteModel r ->
   r ->
-  m (Asset LByteString)
+  AppM (Asset LByteString)
 renderCatchingErrors m r =
   catch (siteOutput (fromPrism_ $ routePrism m) m r) $ \(err :: SomeException) -> do
     -- Log the error first.
-    logErrorNS "App" $ show @Text err
+    logError $ show @Text err
     pure
       $ AssetGenerated Html
         . mkHtmlErrorMsg

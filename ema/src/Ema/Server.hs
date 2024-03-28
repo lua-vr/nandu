@@ -3,9 +3,9 @@ module Ema.Server (
   runServerWithWebSocketHotReload,
 ) where
 
-import Control.Monad.Logger
+import Colog (logInfo)
 import Data.LVar (LVar)
-import Ema.CLI (Host (unHost))
+import Ema.CLI (AppM, Host (unHost))
 import Ema.Route.Class (IsRoute (RouteModel))
 import Ema.Server.HTTP (httpApp)
 import Ema.Server.WebSocket (wsApp)
@@ -16,15 +16,12 @@ import Network.Wai.Handler.Warp (Port)
 import Network.Wai.Handler.Warp qualified as Warp
 import Network.Wai.Handler.WebSockets qualified as WaiWs
 import Network.WebSockets qualified as WS
-import UnliftIO (MonadUnliftIO)
+import UnliftIO (UnliftIO (..), askUnliftIO)
 import UnliftIO.Concurrent (threadDelay)
 
 runServerWithWebSocketHotReload ::
-  forall r m.
+  forall r.
   ( Show r
-  , MonadIO m
-  , MonadUnliftIO m
-  , MonadLoggerIO m
   , Eq r
   , IsRoute r
   , EmaStaticSite r
@@ -33,27 +30,26 @@ runServerWithWebSocketHotReload ::
   Host ->
   Maybe Port ->
   LVar (RouteModel r) ->
-  m ()
+  AppM ()
 runServerWithWebSocketHotReload mWsOpts host mport model = do
-  logger <- askLoggerIO
-  let runM = flip runLoggingT logger
-      settings =
+  (unliftIO -> unlift) <- askUnliftIO
+  let settings =
         Warp.defaultSettings
           & Warp.setHost (fromString . toString . unHost $ host)
       app =
         case mWsOpts of
           Nothing ->
-            httpApp @r logger model Nothing
+            (unlift .) . httpApp @r model Nothing
           Just opts ->
             WaiWs.websocketsOr
               WS.defaultConnectionOptions
-              (wsApp @r logger model $ emaWebSocketServerHandler opts)
-              (httpApp @r logger model $ Just $ emaWebSocketClientShim opts)
+              (unlift . wsApp @r model (emaWebSocketServerHandler opts))
+              ((unlift .) . httpApp @r model (Just $ emaWebSocketClientShim opts))
       banner port = do
-        logInfoNS "ema" "==============================================="
-        logInfoNS "ema" $ "Ema live server RUNNING: http://" <> unHost host <> ":" <> show port <> " (" <> maybe "no ws" (const "ws") mWsOpts <> ")"
-        logInfoNS "ema" "==============================================="
-  liftIO $ warpRunSettings settings mport (runM . banner) app
+        logInfo "==============================================="
+        logInfo $ "Ema live server RUNNING: http://" <> unHost host <> ":" <> show port <> " (" <> maybe "no ws" (const "ws") mWsOpts <> ")"
+        logInfo "==============================================="
+  liftIO $ warpRunSettings settings mport (unlift . banner) app
 
 -- Like Warp.runSettings but takes *optional* port. When no port is set, a
 -- free (random) port is used.
