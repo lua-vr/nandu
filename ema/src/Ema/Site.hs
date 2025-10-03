@@ -10,7 +10,6 @@ import Ema.CLI qualified as CLI
 import Ema.Dynamic (Dynamic)
 import Ema.Route.Class (IsRoute (RouteModel))
 import Optics.Core (Prism')
-import UnliftIO (MonadUnliftIO)
 import Colog (WithLog, Message)
 
 {- | Typeclass to orchestrate an Ema site
@@ -51,23 +50,23 @@ class (IsRoute r) => EmaSite r where
   --
   --    If your model is not time-varying, use `pure` to produce a constant value.
   siteInput ::
-    forall m env.
-    (MonadUnliftIO m, WithLog env Message m) =>
+    forall env.
+    (WithLog env Message IO) =>
     CLI.Action ->
     -- | The value passed by the programmer to `Ema.App.runSite`
     SiteArg r ->
     -- | Time-varying value of the model. If your model is not time-varying, use
     -- `pure` to produce a constant value.
-    m (Dynamic m (RouteModel r))
+    IO (Dynamic IO (RouteModel r))
 
   -- | Return the output (typically an `Asset`) for the given route and model.
   siteOutput ::
-    forall m env.
-    (MonadUnliftIO m, WithLog env Message m) =>
+    forall env.
+    (WithLog env Message IO) =>
     Prism' FilePath r ->
     RouteModel r ->
     r ->
-    m (SiteOutput r)
+    IO (SiteOutput r)
 
 -- | Like `EmaSite` but `SiteOutput` is a bytestring `Asset`.
 type EmaStaticSite r = (EmaSite r, SiteOutput r ~ Asset LByteString)

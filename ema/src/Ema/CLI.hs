@@ -7,7 +7,6 @@ import Colog (LogAction, LoggerT, Message, Msg (..), Severity (..), WithLog, fil
 import Data.Default (Default (def))
 import Network.Wai.Handler.Warp (Port)
 import Options.Applicative hiding (action)
-import UnliftIO (MonadUnliftIO)
 
 newtype AppM a = AppM (LoggerT Message IO a)
   deriving newtype
@@ -16,7 +15,6 @@ newtype AppM a = AppM (LoggerT Message IO a)
     , MonadFail
     , Monad
     , MonadIO
-    , MonadUnliftIO
     )
 
 usingAppM :: LogAction IO Message -> AppM a -> IO a

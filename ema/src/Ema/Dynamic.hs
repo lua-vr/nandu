@@ -2,7 +2,7 @@ module Ema.Dynamic (
   Dynamic (Dynamic),
 ) where
 
-import UnliftIO (MonadUnliftIO, concurrently_)
+import UnliftIO (concurrently_)
 
 {- | A time-varying value of type `a`, changing under monad `m`.
 
@@ -26,7 +26,7 @@ instance Functor (Dynamic m) where
       , \send -> xf $ send . f
       )
 
-instance (MonadUnliftIO m) => Applicative (Dynamic m) where
+instance Applicative (Dynamic IO) where
   pure x = Dynamic (x, const pass)
   liftA2 f (Dynamic (x0, xf)) (Dynamic (y0, yf)) =
     Dynamic
