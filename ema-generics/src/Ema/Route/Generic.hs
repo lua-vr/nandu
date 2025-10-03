@@ -134,11 +134,10 @@ instance
   ) =>
   HasSubModels (GenericRoute r opts)
   where
-  subModels m =
+  subModels =
     gsubModels @_ @(RouteModel (GenericRoute r opts))
       @(MultiModel (SubRoutes (GenericRoute r opts)))
       @(OptSubModels r opts)
-      m
 
 instance
   ( VerifyRoutes (RCode r) (SubRoutes (GenericRoute r opts))
